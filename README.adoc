@@ -1,0 +1,15 @@
+= Kafka Streams project
+
+Goal of the project is to be able to handle a stream of article price change events. The events arrive per second. The project will support a limited amount of articles (~50).
+
+Customers have set price boundaries (upper and lower bound) and want to receive a message when a product price crosses one of the boundaries. It must result in different messages.
+The number of customers to support is unlimited and every customer can set an number of upper bounds and any number of lower bounds per article.
+
+== Design
+One of the goals of the project is to experiment with ksqlDB and kafka streams.
+
+The price changes are received as one JSON document. The Kafka client will split the JSON into separate events and publishes the event to topics, one topic per article.
+
+A ksqlDB table will store the current prices.
+
+The current prices are matched with the boundary values set by customers to find the customers who need a notification.

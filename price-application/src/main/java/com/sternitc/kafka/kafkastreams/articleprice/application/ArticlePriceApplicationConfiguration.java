@@ -1,7 +1,5 @@
 package com.sternitc.kafka.kafkastreams.articleprice.application;
 
-import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.messaging.NewArticlePricePublisherPortKafka;
-import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.messaging.NewArticlePublisherPortKafka;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticleNameHandler;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticleNameHandlerImpl;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticlePriceMapper;
@@ -13,7 +11,6 @@ import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persist
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.KafkaTemplate;
 
 @Configuration
 public class ArticlePriceApplicationConfiguration {

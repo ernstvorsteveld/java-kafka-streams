@@ -1,17 +1,14 @@
-package com.sternitc.kafka.kafkastreams.articleprice.application.domain.model;
+package com.sternitc.kafka.kafkastreams.articleprice.application.domain.service;
 
+import com.sternitc.kafka.kafkastreams.articleprice.application.domain.model.ArticlePrice;
+import com.sternitc.kafka.kafkastreams.articleprice.application.domain.model.Mapper;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.in.NewArticlePricesUseCase;
-
-import java.util.UUID;
 
 public class ArticlePriceMapper implements Mapper<NewArticlePricesUseCase.NewArticlePrice, ArticlePrice> {
 
     @Override
     public ArticlePrice to(NewArticlePricesUseCase.NewArticlePrice in) {
-        ArticlePrice.ArticlePriceBuilder builder = new ArticlePrice.ArticlePriceBuilder();
-        builder.name(in.name());
-        builder.price(in.price());
-        return builder.build();
+        return new ArticlePrice(in.name(), in.price());
     }
 
     @Override

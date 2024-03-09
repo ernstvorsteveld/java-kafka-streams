@@ -1,29 +1,36 @@
 package com.sternitc.kafka.kafkastreams.articleprice.adapter.out.persistence.inmemory;
 
-import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.persistence.GetTopicName;
-import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.persistence.SaveTopicName;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.DeleteTopicName;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile("no-mongodb")
+@Profile("!mongodb")
 public class PersistenceInMemoryConfiguration {
 
     @Bean
     public SaveTopicName saveTopicName(
-            InMemoryTopicNameStoreImpl inMemoryTopicNameStore) {
+            InMemoryTopicNameStoreAdapter inMemoryTopicNameStore) {
         return inMemoryTopicNameStore;
     }
 
     @Bean
     public GetTopicName getTopicName(
-            InMemoryTopicNameStoreImpl inMemoryTopicNameStore) {
+            InMemoryTopicNameStoreAdapter inMemoryTopicNameStore) {
         return inMemoryTopicNameStore;
     }
 
     @Bean
-    public InMemoryTopicNameStoreImpl inMemoryTopicNameStore() {
-        return new InMemoryTopicNameStoreImpl();
+    DeleteTopicName deleteTopicName(
+            InMemoryTopicNameStoreAdapter inMemoryTopicNameStore) {
+        return inMemoryTopicNameStore;
+    }
+
+    @Bean
+    public InMemoryTopicNameStoreAdapter inMemoryTopicNameStore() {
+        return new InMemoryTopicNameStoreAdapter();
     }
 }

@@ -1,7 +1,10 @@
 package com.sternitc.kafka.kafkastreams.articleprice.application.port.in;
 
 import com.sternitc.kafka.kafkastreams.KafkaStreamsApplication;
-import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.messaging.ArticleTopicsService;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.NewArticlePublisherPort;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.DeleteTopicName;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,13 +33,18 @@ class NewArticlePricesUseCaseTest {
     private NewArticlePricesUseCase useCase;
 
     @Autowired
-    private ArticleTopicsService articleTopicsService;
+    private DeleteTopicName deleteTopicName;
+
+    @Autowired
+    private SaveTopicName saveTopicName;
 
     @Test
     public void should_send_new_topic_name_for_new_article() {
         Collection<NewArticlePricesUseCase.NewArticlePrice> newPrices = newArticlePrices();
         NewArticlePricesUseCase.NewArticlePrices newArticlePrices = new NewArticlePricesUseCase.NewArticlePrices(newPrices);
-        int count = useCase.newArticlePrices(newArticlePrices);
+        deleteTopicName.delete("T1");
+
+        int count = useCase.newArticlePrices(newArticlePrices).newPrices().size();
         assertThat(count).isEqualTo(1);
     }
 
@@ -44,7 +52,10 @@ class NewArticlePricesUseCaseTest {
     public void should_send_prices_for_existing_topics() {
         Collection<NewArticlePricesUseCase.NewArticlePrice> newPrices = newArticlePrices();
         NewArticlePricesUseCase.NewArticlePrices newArticlePrices = new NewArticlePricesUseCase.NewArticlePrices(newPrices);
-        int count = useCase.newArticlePrices(newArticlePrices);
+        NewArticlePublisherPort.TopicName topic = new NewArticlePublisherPort.TopicName("T1");
+        saveTopicName.save(new GetTopicName.ArticlePriceTopicName(topic.name(), "T1"));
+
+        int count = useCase.newArticlePrices(newArticlePrices).newPrices().size();
         assertThat(count).isEqualTo(1);
     }
 

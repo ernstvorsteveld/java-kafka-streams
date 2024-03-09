@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class ArticlePriceProducerConfig {
+public class ArticlePriceProducerConfiguration {
 
     @Value("${spring.kafka.articles.bootstrap-servers}")
     private String bootstrapServers;

@@ -1,45 +1,50 @@
 package com.sternitc.kafka.kafkastreams.articleprice.application.domain.service;
 
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.model.ArticlePrice;
-import com.sternitc.kafka.kafkastreams.articleprice.application.domain.model.ArticlePriceMapper;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.in.NewArticlePricesUseCase;
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.ArticlePricePublisherPort;
-
-import java.util.List;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.NewArticlePricePublisherPort;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.NewArticlePublisherPort;
 
 public class NewArticlePricesService implements NewArticlePricesUseCase {
 
     private final ArticlePriceMapper mapper;
-    private final ArticlePricePublisherPort publisherPort;
+    private final NewArticlePricePublisherPort newArticlePricePublisherPort;
+    private final ArticleNameHandler articleNameHandler;
 
-    public NewArticlePricesService(ArticlePriceMapper mapper, ArticlePricePublisherPort publisherPort) {
+    public NewArticlePricesService(
+            ArticlePriceMapper mapper,
+            ArticleNameHandler articleNameHandler,
+            NewArticlePricePublisherPort newArticlePricePublisherPort) {
         this.mapper = mapper;
-        this.publisherPort = publisherPort;
+        this.articleNameHandler = articleNameHandler;
+        this.newArticlePricePublisherPort = newArticlePricePublisherPort;
     }
 
     @Override
-    public int newArticlePrices(NewArticlePrices newPrices) {
-        ArticlePricePublisher publisher = new ArticlePricePublisher(publisherPort);
-        List<ArticlePrice> articlePrices =
+    public NewArticlePrices newArticlePrices(NewArticlePrices newPrices) {
+        return new NewArticlePrices(
                 newPrices.newPrices()
                         .stream()
+                        .parallel()
                         .map(mapper::to)
-                        .map(publisher::publish)
-                        .toList();
-        return articlePrices.size();
+                        .map(this::handleName)
+                        .map(this::publishMessage)
+                        .map(mapper::from)
+                        .toList());
     }
 
-    public static class ArticlePricePublisher {
-
-        private final ArticlePricePublisherPort port;
-
-        public ArticlePricePublisher(ArticlePricePublisherPort port) {
-            this.port = port;
-        }
-
-        public ArticlePrice publish(ArticlePrice articlePrice) {
-            this.port.publish(articlePrice);
-            return articlePrice;
-        }
+    public ArticlePrice publishMessage(ArticlePrice articlePrice) {
+        newArticlePricePublisherPort.publish(
+                new NewArticlePricePublisherPort.NewPrice(
+                        new NewArticlePublisherPort.TopicName(articlePrice.getName()),
+                        articlePrice.getName(),
+                        articlePrice.getPrice()));
+        return articlePrice;
     }
+
+    public ArticlePrice handleName(ArticlePrice articlePrice) {
+        articleNameHandler.handle(articlePrice);
+        return articlePrice;
+    }
+
 }

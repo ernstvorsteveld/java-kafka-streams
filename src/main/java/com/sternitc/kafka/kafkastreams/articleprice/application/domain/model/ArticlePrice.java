@@ -1,41 +1,25 @@
 package com.sternitc.kafka.kafkastreams.articleprice.application.domain.model;
 
+import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticleNameIsEmptyException;
+
 public class ArticlePrice {
 
-    private final String id;
+    private final String name;
     private int price;
 
-    public ArticlePrice(String id) {
-        this.id = id;
-    }
-
-    public void setPrice(int price) {
+    public ArticlePrice(String name, int price) {
+        if ((name == null) || name.isBlank() || name.isEmpty()) {
+            throw new ArticleNameIsEmptyException();
+        }
+        this.name = name;
         this.price = price;
     }
 
     public String getName() {
-        return this.id;
+        return this.name;
     }
 
-    public static class ArticlePriceBuilder {
-
-        private String name;
-        private int price;
-
-        public ArticlePriceBuilder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public ArticlePriceBuilder price(int price) {
-            this.price = price;
-            return this;
-        }
-
-        public ArticlePrice build() {
-            ArticlePrice ap = new ArticlePrice(name);
-            ap.setPrice(price);
-            return ap;
-        }
+    public int getPrice() {
+        return price;
     }
 }

@@ -7,8 +7,8 @@ import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.A
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticlePriceMapper;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.NewArticlePricesService;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.in.NewArticlePricesUseCase;
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.NewArticlePricePublisherPort;
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.NewArticlePublisherPort;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePricePublisherPort;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;
 import org.springframework.context.annotation.Bean;
@@ -17,19 +17,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 
 @Configuration
 public class ArticlePriceApplicationConfiguration {
-
-    @Bean
-    public NewArticlePricePublisherPort articlePricePublisherPort(
-            KafkaTemplate<String, NewArticlePricePublisherPort.NewPriceMessage> articlePriceKafkaTemplate) {
-        return new NewArticlePricePublisherPortKafka(
-                articlePriceKafkaTemplate);
-    }
-
-    @Bean
-    public NewArticlePublisherPort newArticlePublisherPort(
-            KafkaTemplate<String, String> newTopicKafkaTemplate) {
-        return new NewArticlePublisherPortKafka(newTopicKafkaTemplate);
-    }
 
     @Bean
     public ArticleNameHandler articleNameHandler(

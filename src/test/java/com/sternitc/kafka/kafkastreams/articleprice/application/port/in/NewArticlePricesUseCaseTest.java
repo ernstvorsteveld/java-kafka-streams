@@ -1,7 +1,7 @@
 package com.sternitc.kafka.kafkastreams.articleprice.application.port.in;
 
 import com.sternitc.kafka.kafkastreams.KafkaStreamsApplication;
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.NewArticlePublisherPort;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.DeleteTopicName;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;
@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
                 MongoAutoConfiguration.class,
                 MongoDataAutoConfiguration.class
         })
-@ActiveProfiles("no-mongodb")
+@ActiveProfiles({"no-mongodb", "kafka"})
 class NewArticlePricesUseCaseTest {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.articleprice.application.port.out;
+package com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging;
 
 public interface NewArticlePricePublisherPort {
 

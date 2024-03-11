@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class InMemoryTopicNameStoreAdapter implements SaveTopicName, GetTopicName, DeleteTopicName {
 
-    private final Map<String, ArticlePriceTopicName> topics = new HashMap<>();
+    private final Map<String, ArticlePriceTopicNameDto> topics = new HashMap<>();
 
     @Override
-    public ArticlePriceTopicName getByName(String articleName) {
+    public ArticlePriceTopicNameDto getByName(String articleName) {
         if (topics.containsKey(articleName)) {
             return topics.get(articleName);
         }
@@ -25,7 +25,7 @@ public class InMemoryTopicNameStoreAdapter implements SaveTopicName, GetTopicNam
     }
 
     @Override
-    public void save(ArticlePriceTopicName articlePriceTopicName) {
-        topics.put(articlePriceTopicName.articleName(), articlePriceTopicName);
+    public void save(ArticlePriceTopicNameDto articlePriceTopicNameDto) {
+        topics.put(articlePriceTopicNameDto.articleName(), articlePriceTopicNameDto);
     }
 }

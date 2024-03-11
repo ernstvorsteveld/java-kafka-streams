@@ -3,8 +3,8 @@ package com.sternitc.kafka.kafkastreams.articleprice.application.port.in;
 import com.sternitc.kafka.kafkastreams.KafkaStreamsApplication;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.DeleteTopicName;
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.TopicDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -53,7 +53,7 @@ class NewArticlePricesUseCaseTest {
         Collection<NewArticlePricesUseCase.NewArticlePrice> newPrices = newArticlePrices();
         NewArticlePricesUseCase.NewArticlePrices newArticlePrices = new NewArticlePricesUseCase.NewArticlePrices(newPrices);
         NewArticlePublisherPort.TopicName topic = new NewArticlePublisherPort.TopicName("T1");
-        saveTopicName.save(new GetTopicName.ArticlePriceTopicName(topic.name(), "T1"));
+        saveTopicName.save(new TopicDao.ArticlePriceTopicNameDto(topic.name(), "T1"));
 
         int count = useCase.newArticlePrices(newArticlePrices).newPrices().size();
         assertThat(count).isEqualTo(1);

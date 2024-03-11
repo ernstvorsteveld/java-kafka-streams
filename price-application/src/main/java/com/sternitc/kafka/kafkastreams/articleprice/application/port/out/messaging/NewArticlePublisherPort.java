@@ -2,11 +2,11 @@ package com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messag
 
 public interface NewArticlePublisherPort {
 
-    void publish(TopicNameMessage name);
+    void publish(TopicNameEvent event);
 
     record NewArticleMessage(String name){}
 
-    record TopicNameMessage(TopicName topicName, NewArticleMessage message) {
+    record TopicNameEvent(TopicName topicName, NewArticleMessage message) {
     }
 
     record TopicName(String name) {

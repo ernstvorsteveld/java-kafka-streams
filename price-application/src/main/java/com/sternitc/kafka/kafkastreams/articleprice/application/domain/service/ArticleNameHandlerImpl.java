@@ -4,6 +4,7 @@ import com.sternitc.kafka.kafkastreams.articleprice.application.domain.model.Art
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.TopicDao;
 
 public class ArticleNameHandlerImpl implements ArticleNameHandler {
 
@@ -22,15 +23,15 @@ public class ArticleNameHandlerImpl implements ArticleNameHandler {
 
     @Override
     public void handle(ArticlePrice articlePrice) {
-        GetTopicName.ArticlePriceTopicName byName = getTopicName.getByName(articlePrice.getName());
+        TopicDao.ArticlePriceTopicNameDto byName = getTopicName.getByName(articlePrice.getName());
         if (byName == null) {
             NewArticlePublisherPort.TopicName topicName =
                     new NewArticlePublisherPort.TopicName(articlePrice.getName());
             newArticlePublisherPort.publish(
-                    new NewArticlePublisherPort.TopicNameMessage(
+                    new NewArticlePublisherPort.TopicNameEvent(
                             topicName, new NewArticlePublisherPort.NewArticleMessage(topicName.name())));
             saveTopicName.save(
-                    new GetTopicName.ArticlePriceTopicName(topicName.name(), articlePrice.getName()));
+                    new TopicDao.ArticlePriceTopicNameDto(topicName.name(), articlePrice.getName()));
         }
     }
 }

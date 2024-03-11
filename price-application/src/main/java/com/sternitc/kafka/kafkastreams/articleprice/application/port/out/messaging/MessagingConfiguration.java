@@ -13,7 +13,7 @@ public class MessagingConfiguration {
 
     @Bean
     public NewArticlePricePublisherPort articlePricePublisherPort(
-            KafkaTemplate<String, NewArticlePricePublisherPort.NewPriceMessage> articlePriceKafkaTemplate) {
+            KafkaTemplate<String, NewArticlePricePublisherPortKafka.NewPriceMessage> articlePriceKafkaTemplate) {
         return new NewArticlePricePublisherPortKafka(
                 articlePriceKafkaTemplate);
     }

@@ -35,7 +35,7 @@ public class NewArticlePricesService implements NewArticlePricesUseCase {
 
     public ArticlePrice publishMessage(ArticlePrice articlePrice) {
         newArticlePricePublisherPort.publish(
-                new NewArticlePricePublisherPort.NewPrice(
+                new NewArticlePricePublisherPort.NewPriceEvent(
                         new NewArticlePublisherPort.TopicName(articlePrice.getName()),
                         articlePrice.getName(),
                         articlePrice.getPrice()));

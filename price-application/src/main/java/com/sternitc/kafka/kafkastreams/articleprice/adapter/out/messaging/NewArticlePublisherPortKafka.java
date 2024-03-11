@@ -16,7 +16,7 @@ public class NewArticlePublisherPortKafka implements NewArticlePublisherPort {
     }
 
     @Override
-    public void publish(TopicNameMessage message) {
+    public void publish(TopicNameEvent message) {
         logger.info(String.format("Handle new topic creation, name: %s", message.topicName().name()));
         newTopicKafkaTemplate.send(ArticlePriceProducerConfiguration.newArticleTopic, message.message().name());
     }

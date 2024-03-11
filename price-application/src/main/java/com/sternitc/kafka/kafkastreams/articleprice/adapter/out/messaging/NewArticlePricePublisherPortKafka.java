@@ -13,10 +13,13 @@ public class NewArticlePricePublisherPortKafka implements NewArticlePricePublish
     }
 
     @Override
-    public void publish(NewPrice price) {
+    public void publish(NewPriceEvent price) {
         articlePriceKafkaTemplate.send(
                 price.topicName().name(),
                 new NewPriceMessage(price.name(), price.price()));
+    }
+
+    public record NewPriceMessage(String name, int price) {
     }
 
 }

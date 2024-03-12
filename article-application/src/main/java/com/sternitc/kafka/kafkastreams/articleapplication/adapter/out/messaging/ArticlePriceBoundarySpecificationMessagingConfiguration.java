@@ -14,7 +14,7 @@ import java.util.Map;
 @Configuration
 public class ArticlePriceBoundarySpecificationMessagingConfiguration {
 
-    @Value("${spring.kafka.articles.bootstrap-servers}")
+    @Value("${spring.kafka.article-boundaries.bootstrap-servers}")
     private String bootstrapServers;
 
     public static final String priceBoundaryTopic = "price_boundary_topic";
@@ -47,9 +47,4 @@ public class ArticlePriceBoundarySpecificationMessagingConfiguration {
         return new KafkaTemplate<>(newArticlePriceBoundarySpecificationProducerFactory());
     }
 
-    @Bean
-    public NewArticleBoundarySpecificationPublisherPortKafka newArticleBoundarySpecificationPublisherPortKafka(
-            KafkaTemplate<String, NewArticleBoundarySpecificationPublisherPortKafka.NewArticlePriceBoundarySpecificationMessage> articlePriceBoundaryKafkaTemplate) {
-        return new NewArticleBoundarySpecificationPublisherPortKafka(articlePriceBoundaryKafkaTemplate);
-    }
 }

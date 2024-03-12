@@ -1,6 +1,6 @@
 package com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence;
 
-import com.sternitc.kafka.kafkastreams.articleapplication.adapter.out.persistence.SaveArticlePriceBoundarySpecificationDaoInMemory;
+import com.sternitc.kafka.kafkastreams.articleapplication.adapter.out.persistence.ArticlePriceBoundarySpecificationDaoInMemory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -10,17 +10,17 @@ import org.springframework.context.annotation.Profile;
 public class ArticleApplicationPersistenceInMemoryConfiguration {
 
     @Bean
-    public SaveArticlePriceBoundarySpecification saveArticleNotification() {
-        return articleNotificationDaoInMemory();
+    public ArticlePriceBoundarySpecificationDaoInMemory articlePriceBoundarySpecificationDaoInMemory() {
+        return new ArticlePriceBoundarySpecificationDaoInMemory();
     }
 
     @Bean GetArticlePriceBoundarySpecification getArticlePriceBoundarySpecification() {
-        return articleNotificationDaoInMemory();
+        return articlePriceBoundarySpecificationDaoInMemory();
     }
 
     @Bean
-    public SaveArticlePriceBoundarySpecificationDaoInMemory articleNotificationDaoInMemory() {
-        return new SaveArticlePriceBoundarySpecificationDaoInMemory();
+    public SaveArticlePriceBoundarySpecification saveArticlePriceBoundarySpecification() {
+        return articlePriceBoundarySpecificationDaoInMemory();
     }
 
 }

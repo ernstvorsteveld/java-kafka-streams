@@ -6,7 +6,7 @@ import com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence.S
 import java.util.HashMap;
 import java.util.Map;
 
-public class SaveArticlePriceBoundarySpecificationDaoInMemory
+public class ArticlePriceBoundarySpecificationDaoInMemory
         implements SaveArticlePriceBoundarySpecification, GetArticlePriceBoundarySpecification {
 
     private final Map<String, ArticlePriceBoundarySpecificationDto> articlePrices = new HashMap<>();

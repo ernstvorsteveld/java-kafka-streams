@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.articleapplication.port.in;
+package com.sternitc.kafka.kafkastreams.articleapplication.application.port.in;
 
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.model.NewArticleBoundaryCommand;
 

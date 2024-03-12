@@ -2,8 +2,8 @@ package com.sternitc.kafka.kafkastreams.articleapplication.port.out.messaging;
 
 import com.sternitc.kafka.kafkastreams.articleapplication.ArticleApplication;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.model.NewArticleBoundaryCommand;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.in.NewArticleNotificationUseCase;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence.GetArticlePriceBoundarySpecification;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.in.NewArticleNotificationUseCase;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.persistence.GetArticlePriceBoundarySpecification;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

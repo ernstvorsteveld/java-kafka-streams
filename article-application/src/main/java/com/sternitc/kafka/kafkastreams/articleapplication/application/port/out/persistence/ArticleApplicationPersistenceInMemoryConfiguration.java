@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence;
+package com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.persistence;
 
 import com.sternitc.kafka.kafkastreams.articleapplication.adapter.out.persistence.ArticlePriceBoundarySpecificationDaoInMemory;
 import org.springframework.context.annotation.Bean;

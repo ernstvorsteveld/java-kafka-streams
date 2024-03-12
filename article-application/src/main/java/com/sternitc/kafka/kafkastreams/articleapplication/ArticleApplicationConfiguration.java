@@ -1,11 +1,11 @@
 package com.sternitc.kafka.kafkastreams.articleapplication;
 
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.messaging.NewArticleBoundarySpecificationPublisherPort;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.messaging.NewArticleBoundarySpecificationPublisherPort;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.service.ArticlePriceBoundarySpecificationMapper;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.service.Mapper;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.service.NewArticleNotificationService;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.in.NewArticleNotificationUseCase;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence.SaveArticlePriceBoundarySpecification;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.in.NewArticleNotificationUseCase;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.persistence.SaveArticlePriceBoundarySpecification;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

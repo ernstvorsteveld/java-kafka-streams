@@ -1,6 +1,6 @@
 package com.sternitc.kafka.kafkastreams.articleapplication.adapter.out.messaging;
 
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.messaging.NewArticleBoundarySpecificationPublisherPort;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.messaging.NewArticleBoundarySpecificationPublisherPort;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import java.util.logging.Logger;

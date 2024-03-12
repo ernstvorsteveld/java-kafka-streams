@@ -1,7 +1,7 @@
 package com.sternitc.kafka.kafkastreams.articleapplication.adapter.out.persistence;
 
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence.GetArticlePriceBoundarySpecification;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence.SaveArticlePriceBoundarySpecification;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.persistence.GetArticlePriceBoundarySpecification;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.persistence.SaveArticlePriceBoundarySpecification;
 
 import java.util.HashMap;
 import java.util.Map;

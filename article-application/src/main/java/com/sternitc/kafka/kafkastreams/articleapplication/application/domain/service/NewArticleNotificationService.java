@@ -2,9 +2,9 @@ package com.sternitc.kafka.kafkastreams.articleapplication.application.domain.se
 
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.model.ArticlePriceBoundarySpecification;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.model.NewArticleBoundaryCommand;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.in.NewArticleNotificationUseCase;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.messaging.NewArticleBoundarySpecificationPublisherPort;
-import com.sternitc.kafka.kafkastreams.articleapplication.port.out.persistence.SaveArticlePriceBoundarySpecification;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.in.NewArticleNotificationUseCase;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.messaging.NewArticleBoundarySpecificationPublisherPort;
+import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.persistence.SaveArticlePriceBoundarySpecification;
 
 public class NewArticleNotificationService implements NewArticleNotificationUseCase {
 

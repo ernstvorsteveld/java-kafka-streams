@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.articleapplication.port.out.messaging;
+package com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.messaging;
 
 public interface NewArticleBoundarySpecificationPublisherPort {
 

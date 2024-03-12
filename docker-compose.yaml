@@ -81,7 +81,7 @@ services:
   #     - kafka-2
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:latest
+    image: confluentinc/cp-ksqldb-server:7.6.0
     hostname: ksqldb-server
     container_name: ksqldb-server
     depends_on:
@@ -103,7 +103,7 @@ services:
       KSQL_KSQL_EXTENSION_DIR: "/opt/ksqldb-udfs"
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:latest
+    image: confluentinc/cp-schema-registry:7.6.0
     hostname: schema-registry
     container_name: schema-registry
     ports:
@@ -127,7 +127,7 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS: "PLAINTEXT://kafka-0:9092,PLAINTEXT://kafka-1:9092,PLAINTEXT://kafka-2:9092,PLAINTEXT_INTERNAL://localhost:29092"
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:latest
+    image: confluentinc/cp-ksqldb-cli:7.6.0
     container_name: ksqldb-cli
     entrypoint: /bin/sh
     tty: true

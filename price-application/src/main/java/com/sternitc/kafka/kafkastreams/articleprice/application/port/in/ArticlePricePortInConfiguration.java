@@ -1,10 +1,9 @@
-package com.sternitc.kafka.kafkastreams.articleprice.application;
+package com.sternitc.kafka.kafkastreams.articleprice.application.port.in;
 
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticleNameHandler;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticleNameHandlerImpl;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticlePriceMapper;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.NewArticlePricesService;
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.in.NewArticlePricesUseCase;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePricePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
@@ -13,15 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ArticlePriceApplicationConfiguration {
-
-    @Bean
-    public ArticleNameHandler articleNameHandler(
-            GetTopicName getTopicName,
-            SaveTopicName saveTopicName,
-            NewArticlePublisherPort newArticlePublisherPort) {
-        return new ArticleNameHandlerImpl(getTopicName, saveTopicName, newArticlePublisherPort);
-    }
+public class ArticlePricePortInConfiguration {
 
     @Bean
     public NewArticlePricesUseCase newArticlePricesUseCase(
@@ -29,11 +20,6 @@ public class ArticlePriceApplicationConfiguration {
             ArticleNameHandler articleNameHandler,
             NewArticlePricePublisherPort newArticlePricePublisherPort) {
         return new NewArticlePricesService(mapper, articleNameHandler, newArticlePricePublisherPort);
-    }
-
-    @Bean
-    public ArticlePriceMapper articlePriceMapper() {
-        return new ArticlePriceMapper();
     }
 
 }

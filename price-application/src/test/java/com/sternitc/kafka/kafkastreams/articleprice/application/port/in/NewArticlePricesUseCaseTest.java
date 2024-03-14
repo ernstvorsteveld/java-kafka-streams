@@ -1,6 +1,6 @@
 package com.sternitc.kafka.kafkastreams.articleprice.application.port.in;
 
-import com.sternitc.kafka.kafkastreams.KafkaStreamsApplication;
+import com.sternitc.kafka.kafkastreams.articleprice.KafkaStreamsApplication;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.DeleteTopicName;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;

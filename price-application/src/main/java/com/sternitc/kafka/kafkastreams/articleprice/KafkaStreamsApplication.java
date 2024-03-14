@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams;
+package com.sternitc.kafka.kafkastreams.articleprice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.articleapplication;
+package com.sternitc.kafka.kafkastreams;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -74,7 +74,7 @@ class ArticlePriceProcessorTest {
                                 PriceChangeType.DECREASED)));
     }
 
-    private static ConsumerRecords<String, String> expectConsumerRecords(EmbeddedKafkaBroker embeddedKafka) {
+    private ConsumerRecords<String, String> expectConsumerRecords(EmbeddedKafkaBroker embeddedKafka) {
         Map<String, Object> consumerProps = KafkaTestUtils.consumerProps(GROUP_NAME, "false", embeddedKafka);
         consumerProps.put("key.deserializer", StringDeserializer.class);
         consumerProps.put("value.deserializer", StringDeserializer.class);
@@ -87,7 +87,7 @@ class ArticlePriceProcessorTest {
         return poll;
     }
 
-    private static KafkaTemplate<String, String> expectTemplate(EmbeddedKafkaBroker embeddedKafka) {
+    private KafkaTemplate<String, String> expectTemplate(EmbeddedKafkaBroker embeddedKafka) {
         Map<String, Object> senderProps = KafkaTestUtils.producerProps(embeddedKafka);
         senderProps.put("key.serializer", StringSerializer.class);
         senderProps.put("value.serializer", StringSerializer.class);

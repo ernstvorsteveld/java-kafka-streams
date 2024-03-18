@@ -20,7 +20,7 @@ import java.util.Collection;
 //                MongoDataAutoConfiguration.class
 //        })
 @ActiveProfiles({"no-mongodb", "kafka"})
-class NewTopicUseCaseTest {
+public class NewTopicUseCaseTest {
 
     @Autowired
     private GetTopic getTopic;

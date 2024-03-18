@@ -28,7 +28,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 @SpringBootTest
-@EmbeddedKafka(topics = {ArticlePriceProcessorTest.INPUT_TOPIC, ArticlePriceProcessorTest.OUTPUT_TOPIC},
+@EmbeddedKafka(
+        topics = {ArticlePriceProcessorTest.INPUT_TOPIC, ArticlePriceProcessorTest.OUTPUT_TOPIC},
         partitions = 1)
 @ActiveProfiles("test")
 class ArticlePriceProcessorTest {

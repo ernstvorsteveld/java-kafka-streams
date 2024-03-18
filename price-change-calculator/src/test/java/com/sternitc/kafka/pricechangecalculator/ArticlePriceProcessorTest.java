@@ -26,7 +26,6 @@ import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
 @SpringBootTest
 @EmbeddedKafka(
         topics = {ArticlePriceProcessorTest.INPUT_TOPIC, ArticlePriceProcessorTest.OUTPUT_TOPIC},

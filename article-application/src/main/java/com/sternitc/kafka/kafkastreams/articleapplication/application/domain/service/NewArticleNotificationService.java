@@ -26,7 +26,9 @@ public class NewArticleNotificationService implements NewArticleNotificationUseC
         ArticlePriceBoundarySpecification articlePriceBoundary = ArticlePriceBoundarySpecification.from(command);
         Identity identity = new Identity(saveArticlePriceBoundarySpecification.save(mapper.to(articlePriceBoundary)));
         publisher.publish(new NewArticleBoundarySpecificationPublisherPort.NewArticleBoundarySpecificationEvent(
-                articlePriceBoundary.getArticleId(), command.getBoundaryType(), articlePriceBoundary.getBoundary()));
+                articlePriceBoundary.getArticleId(),
+                articlePriceBoundary.getBoundaryType().name(),
+                articlePriceBoundary.getBoundary()));
         return identity;
     }
 }

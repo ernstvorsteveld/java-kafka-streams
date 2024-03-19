@@ -42,7 +42,6 @@ class NewPriceThresholdUseCaseITest {
         newPriceThresholdUseCase.accept(command);
 
         assertThat(getArticlePriceThreshold.get("10").value()).isEqualTo(10);
-
         TimeUnit.SECONDS.sleep(1);
         assertThat(eventMap.size()).isEqualTo(1);
     }

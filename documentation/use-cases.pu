@@ -1,0 +1,20 @@
+@startuml "use-cases"
+left to right direction
+
+actor "Article Manager" as PM
+
+package "Price Application" {
+    usecase "New Price" as UCNP
+}
+
+PM --> UCNP
+
+actor "Article Buyer" as AB
+
+package "Price Threshold Application" {
+    usecase "New Price Threshold" as UCNPT
+}
+
+AB --> UCNPT
+
+@enduml

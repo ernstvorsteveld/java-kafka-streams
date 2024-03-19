@@ -1,0 +1,13 @@
+= Price Change Notifications
+:sectnums: 5
+:toc: left
+
+== Synopsis
+The set of applications in this project implement together:
+
+* Allow registration of article prices
+* Allow registration of price threshold
+* Notification when an article price crosses a price threshold
+
+== Use case diagram
+

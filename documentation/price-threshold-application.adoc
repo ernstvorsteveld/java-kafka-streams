@@ -1,8 +1,0 @@
-= Price Threshold Application
-:sectnums: 5
-:toc: left
-
-== Synopsis
-The Price Threshold Application is responsible for registration of article price thresholds. A threshold is defined by a value and an indicator for the type of threshold (upperbound or lower bound). When an article price changes, this price might cross a threshold. If the price change is crossing an upper- or lower bound in the indicated direction of a price threshold, this must result in an event.
-
-

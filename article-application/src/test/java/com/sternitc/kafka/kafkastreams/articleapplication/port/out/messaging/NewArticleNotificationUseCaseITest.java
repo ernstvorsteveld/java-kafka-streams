@@ -1,6 +1,6 @@
 package com.sternitc.kafka.kafkastreams.articleapplication.port.out.messaging;
 
-import com.sternitc.kafka.kafkastreams.articleapplication.ArticleApplication;
+import com.sternitc.kafka.kafkastreams.ArticleApplication;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.domain.model.NewArticleBoundaryCommand;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.port.in.NewArticleNotificationUseCase;
 import com.sternitc.kafka.kafkastreams.articleapplication.application.port.out.persistence.GetArticlePriceBoundarySpecification;
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
                 MongoDataAutoConfiguration.class
         })
 @ActiveProfiles({"no-mongodb", "kafka"})
-class NewArticleNotificationUseCaseTest {
+class NewArticleNotificationUseCaseITest {
 
     @Autowired
     private NewArticleNotificationUseCase newArticleNotificationUseCase;

@@ -13,14 +13,14 @@ import java.util.concurrent.TimeoutException;
 
 public class Experiment {
 
-    public static String KSQLDB_SERVER_HOST = "0.0.0.0";
+    public static String KSQLDB_SERVER_HOST = "localhost";
     public static int KSQLDB_SERVER_HOST_PORT = 8088;
 
     private final Client client = create();
 
     @BeforeEach
     public void setup_db() {
-        String sql = "CREATE STREAM userprofile (userid INT, firstname VARCHAR, lastname VARCHAR, countrycode VARCHAR, rating DOUBLE) WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'USERPROFILE');";
+        String sql = "CREATE STREAM userprofilestream (userid INT, firstname VARCHAR, lastname VARCHAR, countrycode VARCHAR, rating DOUBLE) WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'USERPROFILE');";
         CompletableFuture<ExecuteStatementResult> result = client.executeStatement(sql);
     }
 

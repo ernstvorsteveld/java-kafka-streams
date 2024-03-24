@@ -1,0 +1,7 @@
+== Technical documentation
+
+[source,bash]
+----
+# Connect to ksqldb server in docker engine
+ksql http://ksqldb-server:8088
+----

@@ -24,10 +24,7 @@ ext {
 dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation ("io.confluent.ksql:ksqldb-api-client:${ksqlVersion}") {
-        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-        exclude group: 'org.eclipse.jetty', module: 'jetty-server'
-    }
+    implementation ("io.confluent.ksql:ksqldb-api-client:${ksqlVersion}")
     implementation 'org.springframework.kafka:spring-kafka'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

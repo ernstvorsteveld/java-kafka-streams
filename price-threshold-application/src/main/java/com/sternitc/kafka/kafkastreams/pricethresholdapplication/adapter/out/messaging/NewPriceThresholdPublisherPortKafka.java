@@ -23,7 +23,6 @@ public class NewPriceThresholdPublisherPortKafka implements NewPriceThresholdPub
         boolean send = streamBridge.send(
                 priceBoundaryTopic,
                 new NewArticlePriceThresholdMessage(event.articleId(), event.boundaryType(), event.value()));
-        System.out.println(send);
     }
 
     public record NewArticlePriceThresholdMessage(String articleId, String type, int value) {

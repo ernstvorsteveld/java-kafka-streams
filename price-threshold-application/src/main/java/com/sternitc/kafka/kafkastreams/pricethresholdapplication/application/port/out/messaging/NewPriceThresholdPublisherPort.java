@@ -4,7 +4,7 @@ public interface NewPriceThresholdPublisherPort {
 
     void publish(NewArticlePriceThresholdEvent event);
 
-    record NewArticlePriceThresholdEvent(String articleId, String boundaryType, int value) {
+    record NewArticlePriceThresholdEvent(String articleId, String companyId, String userId, String boundaryType, int value) {
     }
 
 }

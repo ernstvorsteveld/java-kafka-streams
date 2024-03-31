@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+/documentation/diagrams/article_price_change_notification_application.png
+/documentation/diagrams/article_price_change_notification_application.svg

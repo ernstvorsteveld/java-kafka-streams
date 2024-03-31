@@ -28,6 +28,8 @@ public class NewPriceThresholdService implements NewPriceThresholdUseCase {
         Identity identity = new Identity(saveArticlePriceThresholdSpecification.save(mapper.to(articlePriceBoundary)));
         publisher.publish(new NewPriceThresholdPublisherPort.NewArticlePriceThresholdEvent(
                 articlePriceBoundary.getArticleId(),
+                articlePriceBoundary.getCompanyId(),
+                articlePriceBoundary.getUserId(),
                 articlePriceBoundary.getBoundaryType().name(),
                 articlePriceBoundary.getBoundary()));
         return identity;

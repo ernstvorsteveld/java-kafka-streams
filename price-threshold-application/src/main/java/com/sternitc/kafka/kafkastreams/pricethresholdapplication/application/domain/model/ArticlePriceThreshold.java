@@ -3,11 +3,15 @@ package com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.do
 public class ArticlePriceThreshold {
 
     private final String articleId;
+    private final String companyId;
+    private final String userId;
     private final ThresholdType thresholdType;
     private final int boundary;
 
-    public ArticlePriceThreshold(String articleId, ThresholdType thresholdType, int boundary) {
+    public ArticlePriceThreshold(String articleId, String companyId, String userid, ThresholdType thresholdType, int boundary) {
         this.articleId = articleId;
+        this.companyId = companyId;
+        this.userId = userid;
         this.thresholdType = thresholdType;
         this.boundary = boundary;
     }
@@ -19,6 +23,14 @@ public class ArticlePriceThreshold {
 
     public String getArticleId() {
         return articleId;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public ThresholdType getBoundaryType() {

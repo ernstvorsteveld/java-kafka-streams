@@ -3,12 +3,16 @@ package com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.do
 public class NewPriceThresholdCommand {
 
     private final String articleId;
-    private final String BoundaryType;
+    private final String companyId;
+    private final String userId;
+    private final String boundaryType;
     private final int boundary;
 
-    public NewPriceThresholdCommand(String articleId, String boundaryType, int boundary) {
+    public NewPriceThresholdCommand(String articleId, String companyId, String userId, String boundaryType, int boundary) {
         this.articleId = articleId;
-        BoundaryType = boundaryType;
+        this.companyId = companyId;
+        this.userId =  userId;
+        this.boundaryType = boundaryType;
         this.boundary = boundary;
     }
 
@@ -16,8 +20,16 @@ public class NewPriceThresholdCommand {
         return articleId;
     }
 
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
     public String getBoundaryType() {
-        return BoundaryType;
+        return boundaryType;
     }
 
     public int getBoundary() {

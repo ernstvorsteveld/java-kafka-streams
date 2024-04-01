@@ -12,16 +12,24 @@ java {
 }
 
 repositories {
+    maven {
+        url "https://packages.confluent.io/maven/"
+    }
+    maven {
+        url "https://s3-us-west-2.amazonaws.com/confluent-snapshots/"
+    }
     mavenCentral()
 }
 
 ext {
+    set('ksqlVersion', "7.6.0")
     set('springCloudVersion', "2023.0.0")
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.apache.kafka:kafka-streams'
+    implementation ("io.confluent.ksql:ksqldb-api-client:${ksqlVersion}")
     implementation 'org.springframework.cloud:spring-cloud-stream'
     implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
 

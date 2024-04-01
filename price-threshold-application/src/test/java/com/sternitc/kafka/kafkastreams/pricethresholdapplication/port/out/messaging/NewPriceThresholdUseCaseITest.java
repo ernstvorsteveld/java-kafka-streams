@@ -38,7 +38,7 @@ class NewPriceThresholdUseCaseITest {
 
     @Test
     public void should_store_and_publish_new_article_price_threshold() throws InterruptedException {
-        NewPriceThresholdCommand command = new NewPriceThresholdCommand("10", "UPPER", 10);
+        NewPriceThresholdCommand command = new NewPriceThresholdCommand("10","11", "12", "UPPER", 10);
         newPriceThresholdUseCase.accept(command);
 
         assertThat(getArticlePriceThreshold.get("10").value()).isEqualTo(10);

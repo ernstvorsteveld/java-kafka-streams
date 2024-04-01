@@ -1,5 +1,7 @@
-package com.sternitc.kafka.thresholdapplication;
+package com.sternitc.kafka.kafkastreams.pricethresholdapplication.port.out.messaging;
 
+import com.google.common.collect.BoundType;
+import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.model.ThresholdType;
 import io.confluent.ksql.api.client.Client;
 import io.confluent.ksql.api.client.StreamInfo;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -8,7 +10,6 @@ import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.admin.TopicDescription;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.kafka.config.TopicBuilder;
@@ -99,11 +100,11 @@ public class SetupEnvironmentTest {
         }
         assertThat(found).isEqualTo(true);
 
-        articlePriceTemplate.send(ARTICLE_1_PRICES_TOPIC, "20", new ArticlePrice("20", 20));
+        articlePriceTemplate.send(ARTICLE_1_PRICES_TOPIC, "20", new ArticlePrice("20", ThresholdType.UPPER.name(), 20));
         articleThresholdTemplate.send(THRESHOLDS_TOPICS, "1", new ArticleThreshold("10", 100, "ABOVE"));
     }
 
-//    @AfterAll
+    //    @AfterAll
     public static void cleanUp() {
         String sql = "DROP STREAM IF EXISTS article1_prices_stream;";
         client.executeStatement(sql);

@@ -1,4 +1,4 @@
-package com.sternitc.kafka.thresholdapplication;
+package com.sternitc.kafka.kafkastreams.pricethresholdapplication.port.out.messaging;
 
 import io.confluent.ksql.api.client.Client;
 import io.confluent.ksql.api.client.ClientOptions;

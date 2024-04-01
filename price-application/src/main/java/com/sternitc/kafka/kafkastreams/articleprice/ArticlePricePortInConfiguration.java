@@ -1,9 +1,10 @@
-package com.sternitc.kafka.kafkastreams.articleprice.application.port.in;
+package com.sternitc.kafka.kafkastreams.articleprice;
 
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticleNameHandler;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticleNameHandlerImpl;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.ArticlePriceMapper;
 import com.sternitc.kafka.kafkastreams.articleprice.application.domain.service.NewArticlePricesService;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.in.NewArticlePricesUseCase;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePricePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;

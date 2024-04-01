@@ -1,7 +1,5 @@
 package com.sternitc.kafka.kafkastreams.articleprice.application.domain.service;
 
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.in.NewArticlePricesUseCase;
-import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePricePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.GetTopicName;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.SaveTopicName;

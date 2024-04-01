@@ -1,7 +1,9 @@
-package com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging;
+package com.sternitc.kafka.kafkastreams.articleprice.adapter.out.messaging;
 
 import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.messaging.NewArticlePricePublisherPortKafka;
 import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.messaging.NewArticlePublisherPortKafka;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePricePublisherPort;
+import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.messaging.NewArticlePublisherPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

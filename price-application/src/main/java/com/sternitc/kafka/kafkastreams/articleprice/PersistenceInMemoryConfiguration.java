@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence;
+package com.sternitc.kafka.kafkastreams.articleprice;
 
 import com.sternitc.kafka.kafkastreams.articleprice.adapter.out.persistence.inmemory.InMemoryTopicNameStoreAdapter;
 import com.sternitc.kafka.kafkastreams.articleprice.application.port.out.persistence.DeleteTopicName;

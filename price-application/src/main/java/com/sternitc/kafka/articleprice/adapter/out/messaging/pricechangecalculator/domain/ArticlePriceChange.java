@@ -1,4 +1,4 @@
-package com.sternitc.kafka.pricechangecalculator.application.domain;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain;
 
 public record ArticlePriceChange(
         String articleId,

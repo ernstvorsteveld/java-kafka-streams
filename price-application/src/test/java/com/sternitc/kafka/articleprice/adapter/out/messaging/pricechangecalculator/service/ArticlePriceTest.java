@@ -1,8 +1,8 @@
-package com.sternitc.kafka.pricechangecalculator;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePrice;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.ArticlePrice;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

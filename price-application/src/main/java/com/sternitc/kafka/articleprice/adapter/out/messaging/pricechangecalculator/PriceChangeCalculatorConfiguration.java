@@ -1,7 +1,10 @@
-package com.sternitc.kafka.pricechangecalculator.application.service;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator;
 
-import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePrice;
-import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePriceChange;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.ArticlePrice;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.ArticlePriceChange;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.service.ArticlePriceProcessor;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.service.JsonPOJODeserializer;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.service.JsonPOJOSerializer;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;

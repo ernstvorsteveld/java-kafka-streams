@@ -1,4 +1,4 @@
-package com.sternitc.kafka.articleprice.adapter.out.messaging;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.newarticleprice;
 
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.sternitc.kafka.articleprice;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.newarticleprice;
 
 import com.sternitc.kafka.articleprice.application.domain.service.ArticlePriceMapper;
 import com.sternitc.kafka.articleprice.application.domain.service.NewArticlePricesService;

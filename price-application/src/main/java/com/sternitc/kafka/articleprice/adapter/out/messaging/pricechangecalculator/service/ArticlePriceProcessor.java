@@ -1,8 +1,8 @@
-package com.sternitc.kafka.pricechangecalculator.application.service;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.service;
 
-import com.sternitc.kafka.pricechangecalculator.application.domain.PriceChangeType;
-import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePrice;
-import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePriceChange;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.ArticlePrice;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.ArticlePriceChange;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.PriceChangeType;
 import org.apache.kafka.streams.processor.api.Processor;
 import org.apache.kafka.streams.processor.api.ProcessorContext;
 import org.apache.kafka.streams.processor.api.Record;

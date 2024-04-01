@@ -1,15 +1,14 @@
-package com.sternitc.kafka.articleprice.adapter.out.messaging;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.newarticleprice;
 
 import com.sternitc.kafka.articleprice.application.port.out.messaging.NewArticlePricePublisherPort;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaTemplate;
 
-import static com.sternitc.kafka.articleprice.adapter.out.messaging.NewArticlePricePublisherPortKafka.NewArticlePriceEvent;
+import static com.sternitc.kafka.articleprice.adapter.out.messaging.newarticleprice.NewArticlePricePublisherPortKafka.NewArticlePriceEvent;
 
 @Configuration
 public class MessagingConfiguration {

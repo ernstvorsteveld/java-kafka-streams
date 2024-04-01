@@ -1,4 +1,4 @@
-package com.sternitc.kafka.pricechangecalculator.application.service;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.errors.SerializationException;

@@ -1,10 +1,10 @@
-package com.sternitc.kafka.pricechangecalculator;
+package com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePrice;
-import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePriceChange;
-import com.sternitc.kafka.pricechangecalculator.application.domain.PriceChangeType;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.ArticlePrice;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.ArticlePriceChange;
+import com.sternitc.kafka.articleprice.adapter.out.messaging.pricechangecalculator.domain.PriceChangeType;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -13,6 +13,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -31,13 +32,18 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
 @EmbeddedKafka(
-        topics = {ArticlePriceProcessorTest.INPUT_TOPIC, ArticlePriceProcessorTest.OUTPUT_TOPIC},
+        topics = {"${spring.cloud.stream.bindings.processNewPrices-in-0.destination}",
+                "${spring.cloud.stream.bindings.processNewPrices-out-0.destination}"},
         partitions = 1)
 @ActiveProfiles("test")
 class ArticlePriceProcessorTest {
 
-    public static final String INPUT_TOPIC = "article-prices";
-    public static final String OUTPUT_TOPIC = "article-price.changes";
+    @Value("${spring.cloud.stream.bindings.processNewPrices-in-0.destination}")
+    private String newArticlePricesTopic;
+
+    @Value("${spring.cloud.stream.bindings.processNewPrices-out-0.destination}")
+    private String articlePriceChangesTopic;
+
     public static final String GROUP_NAME = "group1";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -84,7 +90,7 @@ class ArticlePriceProcessorTest {
         DefaultKafkaConsumerFactory<String, String> cf = new DefaultKafkaConsumerFactory<>(consumerProps);
 
         Consumer<String, String> consumer = cf.createConsumer();
-        consumer.assign(Collections.singleton(new TopicPartition(OUTPUT_TOPIC, 0)));
+        consumer.assign(Collections.singleton(new TopicPartition(articlePriceChangesTopic, 0)));
         ConsumerRecords<String, String> poll = consumer.poll(Duration.ofSeconds(10));
         consumer.commitSync();
         return poll;
@@ -96,7 +102,7 @@ class ArticlePriceProcessorTest {
         senderProps.put("value.serializer", StringSerializer.class);
         DefaultKafkaProducerFactory<String, String> pf = new DefaultKafkaProducerFactory<>(senderProps);
         KafkaTemplate<String, String> template = new KafkaTemplate<>(pf, true);
-        template.setDefaultTopic(INPUT_TOPIC);
+        template.setDefaultTopic(newArticlePricesTopic);
         return template;
     }
 

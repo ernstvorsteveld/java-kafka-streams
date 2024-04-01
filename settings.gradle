@@ -3,6 +3,5 @@ rootProject.name = 'kafka-streams'
 include 'new-topic-handler'
 include 'price-application'
 include 'price-threshold-application'
-include 'price-change-calculator'
 include 'threshold-application'
 

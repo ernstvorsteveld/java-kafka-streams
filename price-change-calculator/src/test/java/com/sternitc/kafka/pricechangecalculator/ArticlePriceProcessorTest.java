@@ -2,6 +2,9 @@ package com.sternitc.kafka.pricechangecalculator;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePrice;
+import com.sternitc.kafka.pricechangecalculator.application.domain.ArticlePriceChange;
+import com.sternitc.kafka.pricechangecalculator.application.domain.PriceChangeType;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

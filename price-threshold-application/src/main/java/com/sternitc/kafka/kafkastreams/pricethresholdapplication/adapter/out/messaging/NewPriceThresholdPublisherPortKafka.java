@@ -5,7 +5,6 @@ import org.springframework.cloud.stream.function.StreamBridge;
 
 import java.util.logging.Logger;
 
-
 public class NewPriceThresholdPublisherPortKafka implements NewPriceThresholdPublisherPort {
 
     private static final Logger logger = Logger.getLogger(NewPriceThresholdPublisherPortKafka.class.getName());
@@ -19,8 +18,8 @@ public class NewPriceThresholdPublisherPortKafka implements NewPriceThresholdPub
 
     @Override
     public void publish(NewArticlePriceThresholdEvent event) {
-        logger.info("About to publish new article boundary event.");
-        boolean send = streamBridge.send(
+        logger.info(String.format("About to publish new article price boundary event to topic %s.", priceBoundaryTopic));
+        streamBridge.send(
                 priceBoundaryTopic,
                 new NewArticlePriceThresholdMessage(event.articleId(), event.boundaryType(), event.value()));
     }

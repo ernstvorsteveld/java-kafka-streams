@@ -2,85 +2,61 @@ package com.sternitc.kafka.kafkastreams.pricethresholdapplication.port.out.messa
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sternitc.kafka.kafkastreams.PriceThresholdApplication;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.out.messaging.NewArticlePriceThresholdMessageDeserializer;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.out.messaging.NewArticlePriceThresholdMessageSerializer;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.out.messaging.NewPriceThresholdPublisherPortKafka.NewArticlePriceThresholdMessage;
 import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.out.messaging.NewPriceThresholdPublisherPort;
+import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.out.messaging.NewPriceThresholdPublisherPort.NewArticlePriceThresholdEvent;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaProducerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Duration;
-import java.util.Collections;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest
-@SpringBootApplication(
-        scanBasePackageClasses = PriceThresholdApplication.class,
-        exclude = {
-                MongoAutoConfiguration.class,
-                MongoDataAutoConfiguration.class
-        }
+@SpringBootTest(
+        classes = {PriceThresholdApplication.class}
 )
 @EmbeddedKafka(
-        topics = {NewPriceThresholdUseCaseTest.INPUT_TOPIC, NewPriceThresholdUseCaseTest.OUTPUT_TOPIC},
-        partitions = 1)
-@ActiveProfiles(profiles = {"test"})
+        partitions = 1,
+        topics = {"${topic.new.article.prices.boundary.name}"},
+        brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"}
+)
 public class NewPriceThresholdUseCaseTest {
-    public static final String INPUT_TOPIC = "new-price-threshold";
-    public static final String OUTPUT_TOPIC = "new-price-threshold";
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Value("${topic.new.article.prices.boundary.name}")
+    public String newPriceBoundaryTopic;
 
     @Autowired
     private NewPriceThresholdPublisherPort newPriceThresholdPublisherPort;
 
-    @Autowired
-    private Map<String, NewArticlePriceThresholdMessage> msg;
-
     @Test
-    public void should_send(@Autowired EmbeddedKafkaBroker embeddedKafka) throws JsonProcessingException, InterruptedException {
-//        newPriceThresholdPublisherPort.publish(
-//                new NewArticlePriceThresholdEvent("10", "UPPER", 10));
+    public void should_send(@Autowired EmbeddedKafkaBroker embeddedKafkaBroker) throws JsonProcessingException, InterruptedException {
+        newPriceThresholdPublisherPort.publish(
+                new NewArticlePriceThresholdEvent("10", "11", "12", "UPPER", 10));
 
-        Map<String, Object> senderProps = KafkaTestUtils.producerProps(embeddedKafka);
-        senderProps.put("key.serializer", StringSerializer.class);
-        senderProps.put("value.serializer", NewArticlePriceThresholdMessageSerializer.class);
-        DefaultKafkaProducerFactory<String, NewArticlePriceThresholdMessage> pf = new DefaultKafkaProducerFactory<>(senderProps);
-        KafkaTemplate<String, NewArticlePriceThresholdMessage> template = new KafkaTemplate<>(pf, true);
-        template.setDefaultTopic(INPUT_TOPIC);
-        template.sendDefault("10", new NewArticlePriceThresholdMessage("10", "UPPER", 10));
-
-        Map<String, Object> consumerProps = KafkaTestUtils.consumerProps("group1", "false", embeddedKafka);
+        Map<String, Object> consumerProps = KafkaTestUtils.consumerProps("group1", "false", embeddedKafkaBroker);
         consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        consumerProps.put("key.deserializer", StringDeserializer.class);
-        consumerProps.put("value.deserializer", NewArticlePriceThresholdMessageDeserializer.class);
-        DefaultKafkaConsumerFactory<byte[], byte[]> cf = new DefaultKafkaConsumerFactory<>(consumerProps);
+        ConsumerFactory<String, NewArticlePriceThresholdEvent> cf = new DefaultKafkaConsumerFactory<>(
+                consumerProps, new StringDeserializer(),
+                new JsonDeserializer<>(NewArticlePriceThresholdEvent.class, false));
+        Consumer<String, NewArticlePriceThresholdEvent> consumer = cf.createConsumer();
 
-        Consumer<byte[], byte[]> consumer = cf.createConsumer();
-        consumer.assign(Collections.singleton(new TopicPartition(OUTPUT_TOPIC, 0)));
-        ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(10));
-        consumer.commitSync();
+        embeddedKafkaBroker.consumeFromAnEmbeddedTopic(consumer, newPriceBoundaryTopic);
+        ConsumerRecords<String, NewArticlePriceThresholdEvent> records =
+                KafkaTestUtils.getRecords(consumer, Duration.of(3, ChronoUnit.SECONDS), 1);
 
         assertThat(records.count()).isEqualTo(1);
 

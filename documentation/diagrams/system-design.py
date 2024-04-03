@@ -1,7 +1,6 @@
 from diagrams import Diagram
 from diagrams.c4 import SystemBoundary, Container, Relationship
 
-
 graph_attr = {
     "splines": "spline",
 }

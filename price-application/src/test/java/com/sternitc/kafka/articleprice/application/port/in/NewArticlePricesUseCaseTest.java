@@ -28,9 +28,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(
         classes = {ArticlePriceApplication.class}
 )
-@EmbeddedKafka(partitions = 2,
-        topics = {
-                "${topic.new.article.prices.name}"},
+@EmbeddedKafka(partitions = 1,
+        topics = {"${topic.new.article.prices.name}"},
         brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"}
 )
 class NewArticlePricesUseCaseTest {
@@ -44,7 +43,6 @@ class NewArticlePricesUseCaseTest {
     NewArticlePrice house = new NewArticlePrice("house", 1000);
     NewArticlePrice car = new NewArticlePrice("car", 100);
     NewArticlePrice factory = new NewArticlePrice("factory", 1000000);
-
 
     @Test
     public void should_publish_new_article_price_messages(@Autowired EmbeddedKafkaBroker embeddedKafkaBroker) {

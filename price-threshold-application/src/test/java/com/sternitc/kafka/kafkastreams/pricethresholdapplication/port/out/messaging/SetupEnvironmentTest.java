@@ -84,9 +84,9 @@ public class SetupEnvironmentTest {
         assertThat(topicsMap.size()).isEqualTo(2);
 
 
-        String sql = "CREATE STREAM article1_prices_stream (articleId INT, price INT) WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'article1-prices-topic');";
+        String sql = "CREATE STREAM IF NOT EXISTS article1_prices_stream (articleId INT, price INT) WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'article1-prices-topic');";
         client.executeStatement(sql);
-        sql = "CREATE TABLE thresholds_table ( id BIGINT PRIMARY KEY, usertimestamp BIGINT, companyId VARCHAR, threshold INT ) WITH ( KAFKA_TOPIC = 'thresholds-topic', VALUE_FORMAT = 'JSON' );";
+        sql = "CREATE TABLE IF NOT EXISTS thresholds_table ( id BIGINT PRIMARY KEY, usertimestamp BIGINT, companyId VARCHAR, threshold INT ) WITH ( KAFKA_TOPIC = 'thresholds-topic', VALUE_FORMAT = 'JSON' );";
         client.executeStatement(sql);
 
         CompletableFuture<List<StreamInfo>> listCompletableFuture = client.listStreams();

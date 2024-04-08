@@ -1,0 +1,35 @@
+@startuml "article-price-boundary"
+
+actor "Price Boundary Client" as PBC
+
+participant "NewPrice\nThreshold\nUseCase" as NPT
+queue "NewPrice\nThreshold\nTopic1" as NPTT1
+participant "NewPrice\nThreshold\nConsumer" as NPTC
+participant "NewPrice\nStream\nTable" as NPST
+queue "NewPrice\nThreshold\nTopic2" as NPTS
+participant "NewPrice\nThreshold\nDao" as NPTDao
+
+
+PBC --> NPT: Request new\nprice threshold
+activate NPT
+NPT --> NPTT1: Publish new\nprice threshold
+activate NPTT1
+NPTT1 --> NPTC: 
+activate NPTC
+NPTC --> NPST
+activate NPST
+deactivate NPST
+NPTC --> NPTS
+activate NPTS
+NPTS --> NPTDao
+activate NPTDao
+deactivate NPTDao
+deactivate NPTS
+deactivate NPTC
+deactivate NPTT1
+PBC <-- NPT
+deactivate NPT
+
+
+
+@enduml

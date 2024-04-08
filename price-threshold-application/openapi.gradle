@@ -1,0 +1,33 @@
+apply plugin: "org.openapi.generator"
+
+openApiGenerate {
+    generatorName.set("spring")
+    library.set("spring-boot")
+    inputSpec.set("$rootDir/price-threshold-application/src/main/resources/api/price-threshold.yaml")
+    outputDir.set("$buildDir/openapi")
+    apiPackage.set("com.sternitc.pricethreshold.api")
+    invokerPackage.set("com.sternitc.pricethreshold.api.invoker")
+    modelPackage.set("com.sternitc.pricethreshold.api.model")
+    generateApiTests.set(false)
+    generateModelTests.set(false)
+    generateApiDocumentation.set(false)
+    globalProperties.set([
+            "generateSupportingFiles": "false"
+    ])
+    configOptions.set([
+            "dateLibrary": "java8",
+            "reactive": "true",
+            "interfaceOnly": "true",
+            "delegatePattern": "true"
+    ])
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir file("${buildDir}/openapi/src/main/java")
+        }
+    }
+}
+
+compileJava.dependsOn tasks.named("openApiGenerate")

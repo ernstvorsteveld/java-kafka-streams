@@ -1,0 +1,79 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Price Threshold API
+servers:
+  - url: http://price-threshold.sternitc.com/v1
+paths:
+  /price-thresholds:
+    post:
+      summary: Create a Price Threshold Notification
+      operationId: createPriceThreshold
+      tags:
+        - price-threshold
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPriceThresholdRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    NewPriceThresholdRequest:
+      type: object
+      required:
+        - articleId
+        - companyId
+        - userId
+        - boundaryType
+        - boundary
+      properties:
+        articleId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        boundaryType:
+          type: string
+          pattern: "^[A-Z]+$"
+          minLength: 2
+          maxLength: 10
+        boundary:
+          type: integer
+          minimum: 1
+          maximum: 10000
+    Error:
+      type: object
+      required:
+        - error_code
+        - http_status_code
+        - url
+        - timestamp
+        - message
+      properties:
+        code:
+          type: string
+        url:
+          type: string
+        timestamp:
+          type: string
+        message:
+          type: string

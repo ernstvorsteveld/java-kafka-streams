@@ -1,6 +1,8 @@
 package com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.in.http;
 
 import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.in.NewPriceThresholdUseCase;
+import com.sternitc.pricethreshold.api.PriceThresholdsApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,11 +23,14 @@ public class AdapterHttpConfiguration {
         return new Mapper();
     }
 
-    @Bean
-    public PriceThresholdsController priceThresholdsController(
-            NewPriceThresholdUseCase newPriceThresholdUseCase,
-            LocationCreator locationCreator,
-            Mapper mapper) {
-        return new PriceThresholdsController(newPriceThresholdUseCase, locationCreator, mapper);
-    }
+//    @Bean
+//    public PriceThresholdsApiDelegateImpl priceThresholdsApiDelegate(
+//            NewPriceThresholdUseCase newPriceThresholdUseCase,
+//            LocationCreator locationCreator,
+//            Mapper mapper) {
+//        return new PriceThresholdsApiDelegateImpl(newPriceThresholdUseCase, locationCreator, mapper);
+//    }
+
+//    @Autowired
+//    public PriceThresholdsApi api;
 }

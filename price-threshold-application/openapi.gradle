@@ -4,7 +4,7 @@ openApiGenerate {
     generatorName.set("spring")
     library.set("spring-boot")
     inputSpec.set("$rootDir/price-threshold-application/src/main/resources/api/price-threshold.yaml")
-    outputDir.set("$buildDir/openapi")
+    outputDir.set("$rootDir/price-threshold-application/build/openapi")
     apiPackage.set("com.sternitc.pricethreshold.api")
     invokerPackage.set("com.sternitc.pricethreshold.api.invoker")
     modelPackage.set("com.sternitc.pricethreshold.api.model")
@@ -15,19 +15,25 @@ openApiGenerate {
             "generateSupportingFiles": "false"
     ])
     configOptions.set([
-            "dateLibrary": "java8",
-            "reactive": "true",
-            "interfaceOnly": "true",
-            "delegatePattern": "true"
+            "dateLibrary"      : "java8",
+            "reactive"         : "true",
+            "interfaceOnly"    : "true",
+            "delegatePattern"  : "true",
+            "useBeanValidation": "true"
     ])
 }
 
 sourceSets {
     main {
         java {
-            srcDir file("${buildDir}/openapi/src/main/java")
+            srcDir file("$rootDir/price-threshold-application/build/openapi/src/main/java")
         }
     }
+//    test {
+//        java {
+//            srcDir file("${project.buildDir}/openapi/src/main/java")
+//        }
+//    }
 }
 
 compileJava.dependsOn tasks.named("openApiGenerate")

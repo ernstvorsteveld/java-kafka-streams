@@ -44,30 +44,20 @@ public class NewPriceThresholdUseCaseTest {
 
     @Test
     public void should_send(@Autowired EmbeddedKafkaBroker embeddedKafkaBroker) throws JsonProcessingException, InterruptedException {
-        newPriceThresholdPublisherPort.publish(
-                new NewArticlePriceThresholdEvent("10", "11", "12", "UPPER", 10));
-
         Map<String, Object> consumerProps = KafkaTestUtils.consumerProps("group1", "false", embeddedKafkaBroker);
-        consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         ConsumerFactory<String, NewArticlePriceThresholdEvent> cf = new DefaultKafkaConsumerFactory<>(
                 consumerProps, new StringDeserializer(),
                 new JsonDeserializer<>(NewArticlePriceThresholdEvent.class, false));
         Consumer<String, NewArticlePriceThresholdEvent> consumer = cf.createConsumer();
-
         embeddedKafkaBroker.consumeFromAnEmbeddedTopic(consumer, newPriceBoundaryTopic);
+
+        newPriceThresholdPublisherPort.publish(
+                new NewArticlePriceThresholdEvent("10", "11", "12", "INCREASE", 10));
+
         ConsumerRecords<String, NewArticlePriceThresholdEvent> records =
                 KafkaTestUtils.getRecords(consumer, Duration.of(3, ChronoUnit.SECONDS), 1);
 
         assertThat(records.count()).isEqualTo(1);
-
-//        assertThat(msg.entrySet().size()).isEqualTo(1);
-//        assertThat(msg.entrySet().iterator().next().getValue()).isEqualTo(
-//                objectMapper.writeValueAsString(
-//                        new NewArticlePriceThresholdMessage(
-//                                "10",
-//                                "UPPER",
-//                                10)));
-
     }
 
 }

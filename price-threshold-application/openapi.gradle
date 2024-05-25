@@ -4,7 +4,7 @@ openApiGenerate {
     generatorName.set("spring")
     library.set("spring-boot")
     inputSpec.set("$rootDir/price-threshold-application/src/main/resources/api/price-threshold.yaml")
-    outputDir.set("$rootDir/price-threshold-application/build/openapi")
+    outputDir.set("$rootDir/price-threshold-application/build/generated-sources/openapi")
     apiPackage.set("com.sternitc.pricethreshold.api")
     invokerPackage.set("com.sternitc.pricethreshold.api.invoker")
     modelPackage.set("com.sternitc.pricethreshold.api.model")
@@ -26,7 +26,7 @@ openApiGenerate {
 sourceSets {
     main {
         java {
-            srcDir file("$rootDir/price-threshold-application/build/openapi/src/main/java")
+            srcDir file("$rootDir/price-threshold-application/build/generated-sources/openapi/src/main/java")
         }
     }
 //    test {

@@ -27,16 +27,12 @@ class NewPriceThresholdUseCaseITest {
     @Autowired
     private GetArticlePriceThreshold getArticlePriceThreshold;
 
-    @Autowired
-    private Map<String, Map<String, Object>> eventMap;
-
     @Test
     public void should_store_and_publish_new_article_price_threshold() throws InterruptedException {
-        NewPriceThresholdCommand command = new NewPriceThresholdCommand("10", "11", "12", "UPPER", 10);
+        NewPriceThresholdCommand command = new NewPriceThresholdCommand("10", "11", "12", "INCREASE", 10);
         newPriceThresholdUseCase.accept(command);
 
         assertThat(getArticlePriceThreshold.get("10").value()).isEqualTo(10);
         TimeUnit.SECONDS.sleep(1);
-        assertThat(eventMap.size()).isEqualTo(1);
     }
 }

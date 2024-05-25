@@ -6,6 +6,18 @@ servers:
   - url: http://price-threshold.sternitc.com/v1
 paths:
   /price-thresholds:
+    get:
+      summary: Get existing Price Threshold Notifications
+      operationId: getPriceThresholds
+      tags:
+        - price_threshold
+      responses:
+        '200':
+            description: The price thresholds
+            content:
+              application/json:
+                schema:
+                  type: string
     post:
       summary: Create a Price Threshold Notification
       operationId: createPriceThreshold

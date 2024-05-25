@@ -36,4 +36,8 @@ public class PriceThresholdsApiDelegateImpl implements PriceThresholdsApi {
                 .map(locationCreator::from);
     }
 
+    @Override
+    public Mono<ResponseEntity<String>> getPriceThresholds(ServerWebExchange exchange) {
+        return Mono.just(ResponseEntity.ok("Duttet"));
+    }
 }

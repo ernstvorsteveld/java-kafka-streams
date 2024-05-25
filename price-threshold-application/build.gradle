@@ -34,7 +34,7 @@ dependencies {
     implementation 'org.apache.kafka:kafka-streams'
     implementation ("io.confluent.ksql:ksqldb-api-client:${ksqlVersion}")
     implementation 'org.springframework.cloud:spring-cloud-stream'
-    implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
 //    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'io.swagger.core.v3:swagger-annotations:2.2.21'
     implementation 'javax.validation:validation-api:2.0.1.Final'
@@ -58,6 +58,10 @@ dependencyManagement {
     }
 }
 
+tasks.named("bootJar") {
+    duplicatesStrategy = 'include'
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
@@ -67,3 +71,4 @@ apply from: "openapi.gradle"
 springBoot {
     mainClass = 'com/sternitc/kafka/kafkastreams/PriceThresholdApplication'
 }
+

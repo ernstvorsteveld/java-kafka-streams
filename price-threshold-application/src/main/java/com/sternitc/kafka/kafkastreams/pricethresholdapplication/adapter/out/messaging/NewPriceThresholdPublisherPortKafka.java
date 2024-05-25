@@ -19,10 +19,16 @@ public class NewPriceThresholdPublisherPortKafka implements NewPriceThresholdPub
     @Override
     public void publish(NewArticlePriceThresholdEvent event) {
         logger.info(String.format("About to publish new article price boundary event to topic %s.", priceBoundaryTopic));
-        NewArticlePriceThresholdMessage message = new NewArticlePriceThresholdMessage(event.articleId(), event.boundaryType(), event.value());
+        NewArticlePriceThresholdMessage message = new NewArticlePriceThresholdMessage(
+                event.companyId(), event.userId(), event.articleId(), event.boundaryType(), event.value());
         streamBridge.send(priceBoundaryTopic, message);
     }
 
-    public record NewArticlePriceThresholdMessage(String articleId, String type, int value) {
+    public record NewArticlePriceThresholdMessage(
+            String companyId,
+            String userId,
+            String articleId,
+            String type,
+            int value) {
     }
 }

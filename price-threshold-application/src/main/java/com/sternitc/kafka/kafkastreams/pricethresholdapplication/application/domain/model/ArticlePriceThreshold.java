@@ -18,7 +18,7 @@ public class ArticlePriceThreshold {
 
     public static ArticlePriceThreshold from(NewPriceThresholdCommand command) {
         return new ArticlePriceThreshold(
-                command.getArticleId(), "21", "23", ThresholdType.valueOf(command.getBoundaryType()), command.getBoundary());
+                command.getArticleId(), command.getCompanyId(), command.getUserId(), ThresholdType.valueOf(command.getBoundaryType()), command.getBoundary());
     }
 
     public String getArticleId() {

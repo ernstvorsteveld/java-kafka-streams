@@ -31,7 +31,7 @@ public class SetupEnvironmentTest {
     private static KafkaAdmin kafkaAdmin;
     private static Client client;
     private static KafkaTemplate<String, ArticlePrice> articlePriceTemplate;
-    private static KafkaTemplate<String, ArticleThreshold> articleThresholdTemplate;
+    private static KafkaTemplate<String, ArticleBoundary> articleThresholdTemplate;
 
     @BeforeAll
     public static void createKafkaAdmin() {
@@ -59,7 +59,7 @@ public class SetupEnvironmentTest {
                 JsonSerializer.class);
         ProducerFactory<String, ArticlePrice> articlePriceProducerFactory = new DefaultKafkaProducerFactory<>(configProps);
         articlePriceTemplate = new KafkaTemplate<>(articlePriceProducerFactory);
-        ProducerFactory<String, ArticleThreshold> articleThresholdProducerFactory = new DefaultKafkaProducerFactory<>(configProps);
+        ProducerFactory<String, ArticleBoundary> articleThresholdProducerFactory = new DefaultKafkaProducerFactory<>(configProps);
         articleThresholdTemplate = new KafkaTemplate<>(articleThresholdProducerFactory);
     }
 
@@ -100,7 +100,7 @@ public class SetupEnvironmentTest {
         assertThat(found).isEqualTo(true);
 
         articlePriceTemplate.send(ARTICLE_1_PRICES_TOPIC, "20", new ArticlePrice("20", BoundaryType.INCREASE.name(), 20));
-        articleThresholdTemplate.send(THRESHOLDS_TOPICS, "1", new ArticleThreshold("10", 100, "ABOVE"));
+        articleThresholdTemplate.send(THRESHOLDS_TOPICS, "1", new ArticleBoundary("10", 100, "ABOVE"));
     }
 
     //    @AfterAll

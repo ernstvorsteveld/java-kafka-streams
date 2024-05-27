@@ -1,6 +1,6 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.in.http;
 
-import com.sternitc.pricethreshold.api.model.NewPriceThresholdRequest;
+import com.sternitc.generated.api.boundary.model.NewPriceBoundaryRequest;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class PriceThresholdsApiITest {
 
     @Test
     public void should_create_threshold() {
-        NewPriceThresholdRequest body = creator.expectNewPriceThreshold();
+        NewPriceBoundaryRequest body = creator.expectNewPriceBoundary();
         RestAssured.baseURI = "http://localhost:" + port;
         given()
                 .when()

@@ -1,6 +1,6 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.in.http;
 
-import com.sternitc.generated.api.boundary.PriceBoundaryApplicationApi;
+import com.sternitc.generated.api.boundary.PriceBoundaryApi;
 import com.sternitc.generated.api.boundary.model.NewPriceBoundaryRequest;
 import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.in.NewPriceBoundaryUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class PriceBoundaryApiDelegateImpl implements PriceBoundaryApplicationApi {
+public class PriceBoundaryApiDelegateImpl implements PriceBoundaryApi {
 
     private final NewPriceBoundaryUseCase newPriceBoundaryUseCase;
     private final LocationCreator locationCreator;

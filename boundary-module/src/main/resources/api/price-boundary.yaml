@@ -10,7 +10,7 @@ paths:
       summary: Get existing Price Boundary Notifications
       operationId: getPriceBoundaries
       tags:
-        - priceBoundaryApplication
+        - priceBoundary
       responses:
         '200':
             description: The price boundaries
@@ -22,7 +22,7 @@ paths:
       summary: Create a Price Boundary Notification
       operationId: createPriceBoundary
       tags:
-        - priceBoundaryApplication
+        - priceBoundary
       requestBody:
         content:
           application/json:

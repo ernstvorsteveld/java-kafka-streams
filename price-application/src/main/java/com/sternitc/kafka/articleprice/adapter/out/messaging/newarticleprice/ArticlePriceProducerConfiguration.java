@@ -15,7 +15,7 @@ import java.util.Map;
 @Configuration
 public class ArticlePriceProducerConfiguration {
 
-    @Value("${spring.kafka.articles.bootstrap-servers}")
+    @Value("${spring.cloud.stream.kafka.streams.binder.brokers}")
     private String bootstrapServers;
 
     @Bean

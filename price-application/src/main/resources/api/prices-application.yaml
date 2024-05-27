@@ -1,0 +1,66 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Prices API
+servers:
+  - url: http://prices.sternitc.com/v1
+paths:
+  /v1/prices:
+    post:
+      summary: Send stream of prices
+      operationId: createPrices
+      tags:
+        - pricesApplication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPricesRequest'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    NewPricesRequest:
+      type: object
+      required:
+        - id
+        - name
+        - price
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          pattern: "^[A-Z]+$"
+          minLength: 2
+          maxLength: 50
+        price:
+          type: number
+          minimum: 0
+          maximum: 10000
+    Error:
+      type: object
+      required:
+        - error_code
+        - http_status_code
+        - url
+        - timestamp
+        - message
+      properties:
+        code:
+          type: string
+        url:
+          type: string
+        timestamp:
+          type: string
+        message:
+          type: string

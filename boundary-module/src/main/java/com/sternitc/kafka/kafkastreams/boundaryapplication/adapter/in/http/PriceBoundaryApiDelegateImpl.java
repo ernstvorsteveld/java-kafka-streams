@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @RestController
 public class PriceBoundaryApiDelegateImpl implements PriceBoundaryApplicationApi {
 
-    private NewPriceBoundaryUseCase newPriceBoundaryUseCase;
+    private final NewPriceBoundaryUseCase newPriceBoundaryUseCase;
     private final LocationCreator locationCreator;
     private final Mapper mapper;
 

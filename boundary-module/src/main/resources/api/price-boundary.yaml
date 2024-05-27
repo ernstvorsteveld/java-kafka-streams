@@ -1,0 +1,91 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Price Boundary API
+servers:
+  - url: http://price-boundary.sternitc.com/v1
+paths:
+  /v1/price-boundaries:
+    get:
+      summary: Get existing Price Boundary Notifications
+      operationId: getPriceBoundaries
+      tags:
+        - priceBoundaryApplication
+      responses:
+        '200':
+            description: The price boundaries
+            content:
+              application/json:
+                schema:
+                  type: string
+    post:
+      summary: Create a Price Boundary Notification
+      operationId: createPriceBoundary
+      tags:
+        - priceBoundaryApplication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPriceBoundaryRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    NewPriceBoundaryRequest:
+      type: object
+      required:
+        - articleId
+        - companyId
+        - userId
+        - boundaryType
+        - boundary
+      properties:
+        articleId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        boundaryType:
+          type: string
+          pattern: "^[A-Z]+$"
+          minLength: 2
+          maxLength: 10
+        boundary:
+          type: integer
+          minimum: 1
+          maximum: 10000
+    Error:
+      type: object
+      required:
+        - error_code
+        - http_status_code
+        - url
+        - timestamp
+        - message
+      properties:
+        code:
+          type: string
+        url:
+          type: string
+        timestamp:
+          type: string
+        message:
+          type: string

@@ -1,7 +1,6 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.in.http;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.in.http;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 public class PriceThresholdsApiDelegateImplTestConfiguration {

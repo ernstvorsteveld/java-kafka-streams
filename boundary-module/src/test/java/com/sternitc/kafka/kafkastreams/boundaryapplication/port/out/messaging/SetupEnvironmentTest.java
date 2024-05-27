@@ -1,6 +1,6 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.port.out.messaging;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.port.out.messaging;
 
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.model.ThresholdType;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.BoundaryType;
 import io.confluent.ksql.api.client.Client;
 import io.confluent.ksql.api.client.StreamInfo;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -99,7 +99,7 @@ public class SetupEnvironmentTest {
         }
         assertThat(found).isEqualTo(true);
 
-        articlePriceTemplate.send(ARTICLE_1_PRICES_TOPIC, "20", new ArticlePrice("20", ThresholdType.INCREASE.name(), 20));
+        articlePriceTemplate.send(ARTICLE_1_PRICES_TOPIC, "20", new ArticlePrice("20", BoundaryType.INCREASE.name(), 20));
         articleThresholdTemplate.send(THRESHOLDS_TOPICS, "1", new ArticleThreshold("10", 100, "ABOVE"));
     }
 

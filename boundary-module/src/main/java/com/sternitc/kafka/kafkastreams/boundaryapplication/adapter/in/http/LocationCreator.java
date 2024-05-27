@@ -1,6 +1,6 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.in.http;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.in.http;
 
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.in.NewPriceThresholdUseCase;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.in.NewPriceBoundaryUseCase;
 import org.springframework.http.ResponseEntity;
 
 import java.net.URI;
@@ -13,7 +13,7 @@ public class LocationCreator {
         this.location = location;
     }
 
-    public ResponseEntity<Void> from(NewPriceThresholdUseCase.Identity identity) {
+    public ResponseEntity<Void> from(NewPriceBoundaryUseCase.Identity identity) {
         return ResponseEntity.created(URI.create(String.format(location, identity.id()))).build();
     }
 

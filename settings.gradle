@@ -1,5 +1,5 @@
 rootProject.name = 'kafka-streams'
 
 include 'price-application'
-include 'price-threshold-application'
+include 'boundary-module'
 

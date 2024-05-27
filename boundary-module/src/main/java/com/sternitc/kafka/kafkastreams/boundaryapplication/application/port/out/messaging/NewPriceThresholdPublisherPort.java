@@ -1,22 +1,22 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.out.messaging;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.messaging;
 
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.model.ArticlePriceThreshold;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.ArticlePriceBoundary;
 
 public interface NewPriceThresholdPublisherPort {
 
-    void publish(NewArticlePriceThresholdEvent event);
+    void publish(NewArticlePriceBoundaryEvent event);
 
-    record NewArticlePriceThresholdEvent(String articleId,
-                                         String companyId,
-                                         String userId,
-                                         String boundaryType,
-                                         int value) {
-        public NewArticlePriceThresholdEvent(ArticlePriceThreshold articlePriceThreshold) {
-            this(articlePriceThreshold.getArticleId(),
-                    articlePriceThreshold.getCompanyId(),
-                    articlePriceThreshold.getUserId(),
-                    articlePriceThreshold.getBoundaryType().name(),
-                    articlePriceThreshold.getBoundary());
+    record NewArticlePriceBoundaryEvent(String articleId,
+                                        String companyId,
+                                        String userId,
+                                        String boundaryType,
+                                        int value) {
+        public NewArticlePriceBoundaryEvent(ArticlePriceBoundary articlePriceBoundary) {
+            this(articlePriceBoundary.getArticleId(),
+                    articlePriceBoundary.getCompanyId(),
+                    articlePriceBoundary.getUserId(),
+                    articlePriceBoundary.getBoundaryType().name(),
+                    articlePriceBoundary.getBoundary());
         }
     }
 

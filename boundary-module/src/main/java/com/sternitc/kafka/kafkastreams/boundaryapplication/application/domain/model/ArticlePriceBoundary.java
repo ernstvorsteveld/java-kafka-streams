@@ -1,24 +1,24 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model;
 
-public class ArticlePriceThreshold {
+public class ArticlePriceBoundary {
 
     private final String articleId;
     private final String companyId;
     private final String userId;
-    private final ThresholdType thresholdType;
+    private final BoundaryType boundaryType;
     private final int boundary;
 
-    public ArticlePriceThreshold(String articleId, String companyId, String userid, ThresholdType thresholdType, int boundary) {
+    public ArticlePriceBoundary(String articleId, String companyId, String userid, BoundaryType boundaryType, int boundary) {
         this.articleId = articleId;
         this.companyId = companyId;
         this.userId = userid;
-        this.thresholdType = thresholdType;
+        this.boundaryType = boundaryType;
         this.boundary = boundary;
     }
 
-    public static ArticlePriceThreshold from(NewPriceThresholdCommand command) {
-        return new ArticlePriceThreshold(
-                command.getArticleId(), command.getCompanyId(), command.getUserId(), ThresholdType.valueOf(command.getBoundaryType()), command.getBoundary());
+    public static ArticlePriceBoundary from(NewPriceBoundaryCommand command) {
+        return new ArticlePriceBoundary(
+                command.getArticleId(), command.getCompanyId(), command.getUserId(), BoundaryType.valueOf(command.getBoundaryType()), command.getBoundary());
     }
 
     public String getArticleId() {
@@ -33,8 +33,8 @@ public class ArticlePriceThreshold {
         return userId;
     }
 
-    public ThresholdType getBoundaryType() {
-        return thresholdType;
+    public BoundaryType getBoundaryType() {
+        return boundaryType;
     }
 
     public int getBoundary() {

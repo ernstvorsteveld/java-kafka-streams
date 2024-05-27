@@ -1,7 +1,7 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence;
 
-public interface SaveArticlePriceThreshold extends ArticlePriceThresholdDao {
+public interface SaveArticlePriceBoundary extends ArticlePriceBoundaryDao {
 
-    String save(ArticlePriceThresholdDto dto);
+    String save(ArticlePriceBoundaryDto dto);
 
 }

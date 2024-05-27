@@ -1,32 +1,32 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.service;
 
-import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.ArticlePriceThreshold;
-import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.NewPriceThresholdCommand;
-import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.in.NewPriceThresholdUseCase;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.ArticlePriceBoundary;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.NewPriceBoundaryCommand;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.in.NewPriceBoundaryUseCase;
 import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.messaging.NewPriceThresholdPublisherPort;
-import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence.ArticlePriceThresholdDao;
-import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence.SaveArticlePriceThreshold;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence.ArticlePriceBoundaryDao;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence.SaveArticlePriceBoundary;
 
-public class NewPriceThresholdService implements NewPriceThresholdUseCase {
+public class NewPriceBoundaryService implements NewPriceBoundaryUseCase {
 
-    private final SaveArticlePriceThreshold saveArticlePriceThresholdSpecification;
-    private final Mapper<ArticlePriceThreshold, ArticlePriceThresholdDao.ArticlePriceThresholdDto> mapper;
+    private final SaveArticlePriceBoundary saveArticlePriceBoundarySpecification;
+    private final Mapper<ArticlePriceBoundary, ArticlePriceBoundaryDao.ArticlePriceBoundaryDto> mapper;
     private final NewPriceThresholdPublisherPort publisher;
 
-    public NewPriceThresholdService(
-            SaveArticlePriceThreshold saveArticlePriceThresholdSpecification,
-            Mapper<ArticlePriceThreshold, ArticlePriceThresholdDao.ArticlePriceThresholdDto> mapper,
+    public NewPriceBoundaryService(
+            SaveArticlePriceBoundary saveArticlePriceBoundarySpecification,
+            Mapper<ArticlePriceBoundary, ArticlePriceBoundaryDao.ArticlePriceBoundaryDto> mapper,
             NewPriceThresholdPublisherPort publisher) {
-        this.saveArticlePriceThresholdSpecification = saveArticlePriceThresholdSpecification;
+        this.saveArticlePriceBoundarySpecification = saveArticlePriceBoundarySpecification;
         this.mapper = mapper;
         this.publisher = publisher;
     }
 
     @Override
-    public Identity accept(NewPriceThresholdCommand command) {
-        ArticlePriceThreshold articlePriceThreshold = ArticlePriceThreshold.from(command);
-        Identity identity = new Identity(saveArticlePriceThresholdSpecification.save(mapper.to(articlePriceThreshold)));
-        publisher.publish(new NewPriceThresholdPublisherPort.NewArticlePriceThresholdEvent(articlePriceThreshold));
+    public Identity accept(NewPriceBoundaryCommand command) {
+        ArticlePriceBoundary articlePriceBoundary = ArticlePriceBoundary.from(command);
+        Identity identity = new Identity(saveArticlePriceBoundarySpecification.save(mapper.to(articlePriceBoundary)));
+        publisher.publish(new NewPriceThresholdPublisherPort.NewArticlePriceBoundaryEvent(articlePriceBoundary));
         return identity;
     }
 

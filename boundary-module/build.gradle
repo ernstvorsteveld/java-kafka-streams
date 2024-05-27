@@ -69,5 +69,5 @@ tasks.named('test') {
 apply from: "openapi.gradle"
 
 springBoot {
-    mainClass = 'com/sternitc/kafka/kafkastreams/PriceThresholdApplication'
+    mainClass = 'com/sternitc/kafka/kafkastreams/BoundaryApplication'
 }

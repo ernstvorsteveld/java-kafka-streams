@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.service;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.service;
 
 public interface Mapper<F, T> {
 

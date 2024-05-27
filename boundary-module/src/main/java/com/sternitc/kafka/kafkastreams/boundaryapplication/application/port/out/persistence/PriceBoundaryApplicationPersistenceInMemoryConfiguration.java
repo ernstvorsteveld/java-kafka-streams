@@ -7,21 +7,21 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Profile("!mongodb")
-public class PriceThresholdApplicationPersistenceInMemoryConfiguration {
+public class PriceBoundaryApplicationPersistenceInMemoryConfiguration {
 
     @Bean
-    public ArticlePriceBoundaryDaoInMemory articlePriceThresholdDaoInMemory() {
+    public ArticlePriceBoundaryDaoInMemory articlePriceBoundaryDaoInMemory() {
         return new ArticlePriceBoundaryDaoInMemory();
     }
 
     @Bean
-    GetArticlePriceBoundary getArticlePriceThreshold() {
-        return articlePriceThresholdDaoInMemory();
+    GetArticlePriceBoundary getArticlePriceBoundary() {
+        return articlePriceBoundaryDaoInMemory();
     }
 
     @Bean
-    public SaveArticlePriceBoundary saveArticlePriceThreshold() {
-        return articlePriceThresholdDaoInMemory();
+    public SaveArticlePriceBoundary saveArticlePriceBoundary() {
+        return articlePriceBoundaryDaoInMemory();
     }
 
 }

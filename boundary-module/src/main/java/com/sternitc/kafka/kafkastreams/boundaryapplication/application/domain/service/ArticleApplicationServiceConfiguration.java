@@ -1,4 +1,4 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.service;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 public class ArticleApplicationServiceConfiguration {
 
     @Bean
-    public ArticlePriceThresholdMapper articlePriceBoundarySpecificationMapper() {
-        return new ArticlePriceThresholdMapper();
+    public ArticlePriceBoundaryMapper articlePriceBoundarySpecificationMapper() {
+        return new ArticlePriceBoundaryMapper();
     }
 
 }

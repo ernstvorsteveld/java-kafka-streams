@@ -1,20 +1,20 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.out.messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.out.messaging.NewPriceThresholdPublisherPortKafka.NewArticlePriceThresholdMessage;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.out.messaging.NewPriceBoundaryPublisherPortKafka.NewArticlePriceBoundaryMessage;
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import java.io.IOException;
 
-public class NewArticlePriceThresholdMessageDeserializer implements Deserializer<NewArticlePriceThresholdMessage> {
+public class NewArticlePriceBoundaryMessageDeserializer implements Deserializer<NewArticlePriceBoundaryMessage> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public NewArticlePriceThresholdMessage deserialize(String topic, byte[] data) {
+    public NewArticlePriceBoundaryMessage deserialize(String topic, byte[] data) {
         try {
-            return objectMapper.readValue(data, NewArticlePriceThresholdMessage.class);
+            return objectMapper.readValue(data, NewArticlePriceBoundaryMessage.class);
         } catch (IOException e) {
             throw new SerializationException(e);
         }

@@ -1,6 +1,6 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.out.messaging;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.messaging;
 
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.out.messaging.NewPriceThresholdPublisherPortKafka;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.out.messaging.NewPriceBoundaryPublisherPortKafka;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ public class PriceThresholdMessagingConfiguration {
     @Bean
     public NewPriceThresholdPublisherPort newPriceThresholdPublisherPort(
             StreamBridge streamBridge) {
-        return new NewPriceThresholdPublisherPortKafka(streamBridge, newPriceThresholdTopic);
+        return new NewPriceBoundaryPublisherPortKafka(streamBridge, newPriceThresholdTopic);
     }
 
 }

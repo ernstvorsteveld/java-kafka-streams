@@ -3,11 +3,11 @@ apply plugin: "org.openapi.generator"
 openApiGenerate {
     generatorName.set("spring")
     library.set("spring-boot")
-    inputSpec.set("$rootDir/price-threshold-application/src/main/resources/api/price-threshold.yaml")
-    outputDir.set("$rootDir/price-threshold-application/build/generated-sources/openapi")
-    apiPackage.set("com.sternitc.pricethreshold.api")
-    invokerPackage.set("com.sternitc.pricethreshold.api.invoker")
-    modelPackage.set("com.sternitc.pricethreshold.api.model")
+    inputSpec.set("$rootDir/boundary-module/src/main/resources/api/price-boundary.yaml")
+    outputDir.set("$rootDir/boundary-module/build/generated-sources/openapi")
+    apiPackage.set("com.sternitc.generated.api.boundary")
+    invokerPackage.set("com.sternitc.generated.api.boundary.invoker")
+    modelPackage.set("com.sternitc.generated.api.boundary.model")
     generateApiTests.set(false)
     generateModelTests.set(false)
     generateApiDocumentation.set(false)
@@ -27,7 +27,7 @@ openApiGenerate {
 sourceSets {
     main {
         java {
-            srcDir file("$rootDir/price-threshold-application/build/generated-sources/openapi/src/main/java")
+            srcDir file("$rootDir/boundary-module/build/generated-sources/openapi/src/main/java")
         }
     }
 //    test {

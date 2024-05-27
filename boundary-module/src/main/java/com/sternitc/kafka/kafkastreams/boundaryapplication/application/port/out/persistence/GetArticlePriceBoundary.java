@@ -1,7 +1,7 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence;
 
-public interface GetArticlePriceThreshold extends ArticlePriceThresholdDao {
+public interface GetArticlePriceBoundary extends ArticlePriceBoundaryDao {
 
-    ArticlePriceThresholdDto get(String id);
+    ArticlePriceBoundaryDto get(String id);
 
 }

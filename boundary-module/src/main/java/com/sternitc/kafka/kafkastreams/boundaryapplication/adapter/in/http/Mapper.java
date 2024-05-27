@@ -1,11 +1,11 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.adapter.in.http;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.adapter.in.http;
 
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.model.NewPriceThresholdCommand;
-import com.sternitc.pricethreshold.api.model.NewPriceThresholdRequest;
+import com.sternitc.generated.api.boundary.model.NewPriceBoundaryRequest;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.NewPriceBoundaryCommand;
 
 public class Mapper {
-    public NewPriceThresholdCommand to(NewPriceThresholdRequest request) {
-        return new NewPriceThresholdCommand(
+    public NewPriceBoundaryCommand to(NewPriceBoundaryRequest request) {
+        return new NewPriceBoundaryCommand(
                 request.getArticleId().toString(),
                 request.getCompanyId().toString(),
                 request.getUserId().toString(),

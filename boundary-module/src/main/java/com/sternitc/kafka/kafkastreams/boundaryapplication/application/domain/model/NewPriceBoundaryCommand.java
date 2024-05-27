@@ -1,6 +1,6 @@
 package com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model;
 
-public class NewPriceThresholdCommand {
+public class NewPriceBoundaryCommand {
 
     private final String articleId;
     private final String companyId;
@@ -8,7 +8,7 @@ public class NewPriceThresholdCommand {
     private final String boundaryType;
     private final int boundary;
 
-    public NewPriceThresholdCommand(String articleId, String companyId, String userId, String boundaryType, int boundary) {
+    public NewPriceBoundaryCommand(String articleId, String companyId, String userId, String boundaryType, int boundary) {
         this.articleId = articleId;
         this.companyId = companyId;
         this.userId =  userId;

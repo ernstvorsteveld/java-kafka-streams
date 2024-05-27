@@ -1,11 +1,11 @@
-package com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.in;
+package com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.in;
 
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.model.ArticlePriceThreshold;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.service.Mapper;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.domain.service.NewPriceThresholdService;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.out.messaging.NewPriceThresholdPublisherPort;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.out.persistence.ArticlePriceThresholdDao;
-import com.sternitc.kafka.kafkastreams.pricethresholdapplication.application.port.out.persistence.SaveArticlePriceThreshold;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.model.ArticlePriceBoundary;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.service.Mapper;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.domain.service.NewPriceBoundaryService;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.messaging.NewPriceThresholdPublisherPort;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence.ArticlePriceBoundaryDao;
+import com.sternitc.kafka.kafkastreams.boundaryapplication.application.port.out.persistence.SaveArticlePriceBoundary;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,12 +13,12 @@ import org.springframework.context.annotation.Configuration;
 public class PriceThresholdApplicationPortInConfiguration {
 
     @Bean
-    public NewPriceThresholdUseCase newPriceThresholdUseCase(
-            SaveArticlePriceThreshold saveArticlePriceThreshold,
-            Mapper<ArticlePriceThreshold, ArticlePriceThresholdDao.ArticlePriceThresholdDto> mapper,
+    public NewPriceBoundaryUseCase newPriceThresholdUseCase(
+            SaveArticlePriceBoundary saveArticlePriceBoundary,
+            Mapper<ArticlePriceBoundary, ArticlePriceBoundaryDao.ArticlePriceBoundaryDto> mapper,
             NewPriceThresholdPublisherPort publisher) {
-        return new NewPriceThresholdService(
-                saveArticlePriceThreshold,
+        return new NewPriceBoundaryService(
+                saveArticlePriceBoundary,
                 mapper,
                 publisher);
     }

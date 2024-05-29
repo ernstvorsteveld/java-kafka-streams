@@ -2,4 +2,5 @@ rootProject.name = 'kafka-streams'
 
 include 'price-application'
 include 'boundary-module'
+include 'boundary-mongodb'
 

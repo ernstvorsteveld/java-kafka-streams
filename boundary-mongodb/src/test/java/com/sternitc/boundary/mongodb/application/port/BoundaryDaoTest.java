@@ -2,7 +2,6 @@ package com.sternitc.boundary.mongodb.application.port;
 
 import com.sternitc.boundary.mongodb.BoundaryMongoDBConfiguration;
 import com.sternitc.boundary.mongodb.MongoDBTestContainerConfig;
-import com.sternitc.boundary.mongodb.adapter.out.persistence.BoundaryDocument;
 import com.sternitc.boundary.mongodb.adapter.out.persistence.BoundaryRepo;
 import com.sternitc.boundary.mongodb.application.domain.service.BoundaryApplicationServiceConfiguration;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

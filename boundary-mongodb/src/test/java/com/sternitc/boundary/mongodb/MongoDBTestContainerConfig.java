@@ -1,4 +1,4 @@
-package com.sternitc.boundary.mongodb.adapter.out.persistence;
+package com.sternitc.boundary.mongodb;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;

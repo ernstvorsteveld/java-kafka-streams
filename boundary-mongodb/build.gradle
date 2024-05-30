@@ -6,21 +6,27 @@ plugins {
 }
 
 group = 'com.sternitc.boundary'
-version = 'unspecified'
+version = '0.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 ext {
-    set('springCloudVersion', "2023.0.1")
+    set('spring_cloud_version', "2023.0.1")
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     implementation 'org.springframework.data:spring-data-mongodb'
+    implementation "org.mapstruct:mapstruct:${mapstruct_version}"
+    implementation "org.mapstruct.extensions.spring:mapstruct-spring-annotations:${mapstruct_spring_extensions_version}"
+
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    annotationProcessor "org.mapstruct.extensions.spring:mapstruct-spring-extensions:${mapstruct_spring_extensions_version}"
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
+//    testAnnotationProcessor "org.mapstruct.extensions.spring:mapstruct-spring-extensions:${mapstruct_spring_extensions_version}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -36,6 +42,6 @@ test {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${spring_cloud_version}"
     }
 }

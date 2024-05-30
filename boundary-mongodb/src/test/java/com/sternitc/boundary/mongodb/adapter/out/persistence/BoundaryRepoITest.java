@@ -1,5 +1,6 @@
 package com.sternitc.boundary.mongodb.adapter.out.persistence;
 
+import com.sternitc.boundary.mongodb.MongoDBTestContainerConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ class BoundaryRepoITest {
     }
 
     @Test
-    void givenUserExists_whenFindByUsername_thenGetUser() {
+    void should_create_boundary() {
         BoundaryDocument boundary = new BoundaryDocument(
                 UUID.randomUUID().toString(), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                 "INCREASE", 10.8D);

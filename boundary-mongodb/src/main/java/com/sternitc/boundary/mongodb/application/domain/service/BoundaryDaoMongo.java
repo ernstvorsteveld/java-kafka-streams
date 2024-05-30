@@ -23,31 +23,27 @@ public class BoundaryDaoMongo implements BoundaryDao {
     public Mono<BoundaryDto> save(Mono<BoundaryDto> boundaryDto) {
         return boundaryDto
                 .map(boundaryMapper::toDocument)
-                .map(d -> {System.out.println(d); return d;})
-                .flatMap(d -> {
-                    System.out.println(d);
-                    return boundaryRepo.save(d);
-                })
+                .flatMap(boundaryRepo::save)
                 .map(boundaryMapper::toDto);
     }
 
     @Override
     public Mono<BoundaryDto> findById(String id) {
-        return null;
+        throw new RuntimeException("Not implemented yet.");
     }
 
     @Override
     public Flux<Page<BoundaryDto>> findByCompanyId(CompanyId id, Pageable pageable) {
-        return null;
+        throw new RuntimeException("Not implemented yet.");
     }
 
     @Override
     public Flux<Page<BoundaryDto>> findByUserId(UserId id, Pageable pageable) {
-        return null;
+        throw new RuntimeException("Not implemented yet.");
     }
 
     @Override
     public Flux<Page<BoundaryDto>> findByArticleId(ArticleId id, Pageable pageable) {
-        return null;
+        throw new RuntimeException("Not implemented yet.");
     }
 }
